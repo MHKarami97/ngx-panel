@@ -20,21 +20,21 @@ export class HeaderComponent implements OnInit, OnDestroy {
   themes = [
     {
       value: 'default',
-      name: 'Light',
+      name: 'روشن',
     },
     {
       value: 'dark',
-      name: 'Dark',
+      name: 'تاریک',
     },
     {
       value: 'cosmic',
-      name: 'Cosmic',
+      name: 'کیهانی',
     },
   ];
 
   currentTheme = 'default';
 
-  userMenu = [ { title: 'Profile' }, { title: 'Log out' } ];
+  userMenu = [ { title: 'پروفایل' }, { title: 'خروج' } ];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
