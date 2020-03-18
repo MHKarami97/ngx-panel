@@ -5,13 +5,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./footer.component.scss'],
   template: `
     <span class="created-by">
-      Created with ♥ by <b><a href="https://akveo.page.link/8V2f" target="_blank">Akveo</a></b> 2019
+      طراحی شده با ♥ توسط <b><a href="https://itarfand.com" target="_blank">mhkarami97 و ngx</a></b>
     </span>
     <div class="socials">
-      <a href="#" target="_blank" class="ion ion-social-github"></a>
+      <a href="https://github.com/mhkarami97" target="_blank" class="ion ion-social-github"></a>
       <a href="#" target="_blank" class="ion ion-social-facebook"></a>
-      <a href="#" target="_blank" class="ion ion-social-twitter"></a>
-      <a href="#" target="_blank" class="ion ion-social-linkedin"></a>
+      <a href="https://twitter.com/mhkarami97" target="_blank" class="ion ion-social-twitter"></a>
+      <a href="https://linkedin.com/in/mhkarami97" target="_blank" class="ion ion-social-linkedin"></a>
     </div>
   `,
 })
