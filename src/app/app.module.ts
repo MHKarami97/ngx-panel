@@ -19,7 +19,9 @@ import {
   NbSidebarModule,
   NbToastrModule,
   NbWindowModule,
+  NbAlertModule,
 } from '@nebular/theme';
+import { NgxLoginComponent } from './pages/auth/login/login.component';
 
 @NgModule({
   declarations: [AppComponent],
