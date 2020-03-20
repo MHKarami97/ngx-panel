@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
 import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
 
 import { UserData } from '../../../@core/data/users';
@@ -34,14 +35,24 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
-  userMenu = [ { title: 'پروفایل' }, { title: 'خروج' } ];
+  userMenu = [{ title: 'پروفایل' }, { title: 'خروج' }];
 
   constructor(private sidebarService: NbSidebarService,
-              private menuService: NbMenuService,
-              private themeService: NbThemeService,
-              private userService: UserData,
-              private layoutService: LayoutService,
-              private breakpointService: NbMediaBreakpointsService) {
+    private menuService: NbMenuService,
+    private themeService: NbThemeService,
+    private userService: UserData,
+    private layoutService: LayoutService,
+    private breakpointService: NbMediaBreakpointsService,
+    private authService: NbAuthService) {
+
+    this.authService.onTokenChange()
+      .subscribe((token: NbAuthJWTToken) => {
+
+        if (token.isValid()) {
+          this.user = token.getPayload();
+        }
+
+      });
   }
 
   ngOnInit() {

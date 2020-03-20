@@ -21,10 +21,15 @@ import {
   NbWindowModule,
   NbAlertModule,
 } from '@nebular/theme';
-import { NgxLoginComponent } from './pages/auth/login/login.component';
+import { AuthGuard } from './auth-guard.service';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+  ],
+  providers: [
+    AuthGuard,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -32,7 +37,6 @@ import { NgxLoginComponent } from './pages/auth/login/login.component';
     AppRoutingModule,
 
     ThemeModule.forRoot(),
-
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbDatepickerModule.forRoot(),
