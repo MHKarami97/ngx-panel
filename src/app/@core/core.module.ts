@@ -106,15 +106,11 @@ export const NB_CORE_PROVIDERS = [
   ...NbAuthModule.forRoot({
 
     strategies: [
-      // NbDummyAuthStrategy.setup({
-      //   name: 'email',
-      //   delay: 3000,
-      // }),
       NbPasswordAuthStrategy.setup({
         name: 'email',
         token: {
           class: NbAuthJWTToken,
-          // key: 'token',
+          key: 'access_token',
         },
         baseEndpoint: 'http://localhost:1010/api/v1',
 
