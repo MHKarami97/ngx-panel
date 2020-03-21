@@ -12,6 +12,7 @@ import { NgxLogoutComponent } from './logout/logout.component';
 import { NgxRegisterComponent } from './register/register.component';
 import { NgxResetPasswordComponent } from './reset-password/reset-password.component';
 import { NgxRequestPasswordComponent } from './request-password/request-password.component';
+import { AuthGuard } from '../auth-guard.service';
 
 @NgModule({
   imports: [
@@ -32,6 +33,9 @@ import { NgxRequestPasswordComponent } from './request-password/request-password
     NgxRegisterComponent,
     NgxResetPasswordComponent,
     NgxRequestPasswordComponent,
+  ],
+  providers: [
+    AuthGuard,
   ],
 })
 export class NgxAuthModule {

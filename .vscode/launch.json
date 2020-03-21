@@ -4,8 +4,8 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome against localhost",
-            "url": "http://localhost:4200",
+            "name": "Launch Chrome",
+            "url": "https://localhost:4200",
             "sourceMaps": true,
             "webRoot": "${workspaceRoot}"
         },
