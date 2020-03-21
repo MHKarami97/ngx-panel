@@ -112,10 +112,10 @@ export const NB_CORE_PROVIDERS = [
           class: NbAuthJWTToken,
           key: 'access_token',
         },
-        baseEndpoint: 'http://localhost:1010/api/v1',
+        baseEndpoint: 'https://localhost:44339/api/v1',
 
         login: {
-          endpoint: '/user/token',
+          endpoint: '/user/tokenbybody',
           method: 'post',
         },
         register: {
@@ -146,7 +146,7 @@ export const NB_CORE_PROVIDERS = [
           error: true,
         },
         // redirect: {
-        //   success: '/dashboard/',
+        //   success: '/',
         //   failure: null, // stay on the same page
         // },
         // socialLinks: socialLinks,
