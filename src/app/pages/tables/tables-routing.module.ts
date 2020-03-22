@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { TablesComponent } from './tables.component';
 import { SmartTableComponent } from './smart-table/smart-table.component';
+import { CategoryTableComponent } from './category/category-table.component';
 
 const routes: Routes = [{
   path: '',
@@ -11,6 +12,10 @@ const routes: Routes = [{
     {
       path: 'smart-table',
       component: SmartTableComponent,
+    },
+    {
+      path: 'category',
+      component: CategoryTableComponent,
     },
   ],
 }];

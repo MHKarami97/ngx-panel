@@ -40,7 +40,7 @@ export class HttpInterceptorService implements HttpInterceptor {
 
     return next.handle(req).do((event: HttpEvent<any>) => {
       if (event instanceof HttpResponse && event.status === 201) {
-        this.toastrService.show(
+        this.toastrService.warning(
           'متاسفانه برنامه با خطا مواجه شد',
           'خطا',
           config);
@@ -49,25 +49,25 @@ export class HttpInterceptorService implements HttpInterceptor {
       if (err instanceof HttpErrorResponse) {
         if (err.status === 401) {
           this.router.navigate(['auth/login']);
-          this.toastrService.show(
+          this.toastrService.warning(
             'توکن شما منقضی شده است',
             'هشدار',
             config);
         } else if (err.status === 400) {
           this.router.navigate(['auth/login']);
-          this.toastrService.show(
+          this.toastrService.warning(
             'متاسفانه برنامه با خطا مواجه شد',
             'خطا',
             config);
         } else if (err.status === 500) {
           this.router.navigate(['auth/login']);
-          this.toastrService.show(
+          this.toastrService.warning(
             'متاسفانه برنامه با خطا مواجه شد',
             'خطا',
             config);
         } else if (err.status === 501) {
           this.router.navigate(['auth/login']);
-          this.toastrService.show(
+          this.toastrService.warning(
             'متاسفانه برنامه با خطا مواجه شد',
             'خطا',
             config);

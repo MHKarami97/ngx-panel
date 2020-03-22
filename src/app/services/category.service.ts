@@ -1,4 +1,4 @@
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
@@ -12,10 +12,12 @@ export class CategoryService {
   constructor(private http: HttpClient) { }
 
   apiUrl: 'category/';
+  error = new Subject<string>();
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       // console.error(error);
+      this.error.next(error.message);
       return throwError(error);
     };
   }
