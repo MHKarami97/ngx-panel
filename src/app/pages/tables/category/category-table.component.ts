@@ -2,9 +2,7 @@ import { CategoryService } from './../../../services/category.service';
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Title } from '@angular/platform-browser';
-
 import { SmartTableData } from '../../../@core/data/smart-table';
-import { Subscription } from 'rxjs';
 import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
 
 @Component({
@@ -16,7 +14,6 @@ export class CategoryTableComponent implements OnInit {
 
   isFetching = false;
   error = null;
-  private errorSub: Subscription;
 
   settings = {
     actions: {
@@ -63,10 +60,6 @@ export class CategoryTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle('پنل مدیریت' + ' | ' + 'لیست ' + 'دسته بندی ها');
-
-    this.errorSub = this.dataService.error.subscribe(errorMessage => {
-      this.error = errorMessage;
-    });
 
     this.isFetching = true;
     this.dataService.get().subscribe(

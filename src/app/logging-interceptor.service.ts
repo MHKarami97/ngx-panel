@@ -17,7 +17,7 @@ export class LoggingInterceptorService implements HttpInterceptor {
           // console.log('Incoming response');
           // console.log(event.body);
         }
-      })
+      }),
     );
   }
 }

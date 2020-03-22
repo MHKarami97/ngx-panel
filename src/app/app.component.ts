@@ -1,14 +1,9 @@
-/**
- * @license
- * Copyright Akveo. All Rights Reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
- */
 import { Component, OnInit } from '@angular/core';
 import { AnalyticsService } from './@core/utils/analytics.service';
 import { SeoService } from './@core/utils/seo.service';
 import { Title } from '@angular/platform-browser';
 import { NbMenuService } from '@nebular/theme';
-import { NbAuthService, NbAuthJWTToken, NbTokenService } from '@nebular/auth';
+import { NbTokenService } from '@nebular/auth';
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,7 +16,6 @@ export class AppComponent implements OnInit {
     private seoService: SeoService,
     private titleService: Title,
     private menuService: NbMenuService,
-    private authService: NbAuthService,
     private tokenService: NbTokenService,
     private router: Router) {
   }
@@ -36,7 +30,7 @@ export class AppComponent implements OnInit {
       // this.authService.logout('');
       this.router.navigate(['auth/login']);
     } else if (title === 'پروفایل') {
-      console.log('Profile Clicked');
+      // console.log('Profile Clicked');
     }
   }
 
