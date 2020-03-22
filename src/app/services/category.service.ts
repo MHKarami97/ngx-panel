@@ -3,16 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Category } from '../models/category/category.module';
+import { Api } from '../models/base/api.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CategoryService {
 
-  constructor(private http: HttpClient) { }
-
-  apiUrl: 'category/';
+  apiUrl= 'pieceCategory/';
   error = new Subject<string>();
+
+  constructor(private http: HttpClient) { }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -22,12 +23,12 @@ export class CategoryService {
     };
   }
 
-  get(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.apiUrl + 'get')
+  get(): Observable<Api<Category[]>> {
+    return this.http.get<Api<Category[]>>(this.apiUrl + 'get')
       .pipe(
         tap(),
-        catchError(this.handleError('get', [])),
-      );
+        catchError(this.handleError('get', new Api<Category[]>()),
+      ));
   }
 
   getById(id: number): Observable<Category> {

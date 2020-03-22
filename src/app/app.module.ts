@@ -14,6 +14,7 @@ import {
   NbSidebarModule,
   NbToastrModule,
   NbWindowModule,
+  NbToastrService,
 } from '@nebular/theme';
 import { NbAuthService } from '@nebular/auth';
 import { AuthGuard } from './auth-guard.service';

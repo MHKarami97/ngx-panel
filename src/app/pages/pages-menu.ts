@@ -38,11 +38,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'لیست دسته بندی ها',
-        link: '/pages/tables/smart-table',
+        link: '/pages/tables/category-table',
       },
       {
         title: 'مدیریت دسته بندی ها',
-        link: '/pages/tables/smart-table',
+        link: '/pages/tables/category-table',
       },
       {
         title: 'افزودن دسته بندی',

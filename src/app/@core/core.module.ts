@@ -139,7 +139,7 @@ export const NB_CORE_PROVIDERS = [
       login: {
         redirectDelay: 500,
         strategy: 'email',
-        rememberMe: true,
+        rememberMe: false,
         showMessages: {
           success: true,
           error: true,

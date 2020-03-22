@@ -6,7 +6,10 @@
   </nb-card-header>
 
   <nb-card-body>
-    <ng2-smart-table [settings]="settings" [source]="data" (deleteConfirm)="onDeleteConfirm($event)">
+    <div *ngIf="isFetching && !error">
+     <nb-progress-bar [value]="60" status="primary">صبر کنید ...</nb-progress-bar>
+    </div>
+    <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
     </ng2-smart-table>
   </nb-card-body>
 </nb-card>

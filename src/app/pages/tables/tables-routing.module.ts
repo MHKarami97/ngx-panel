@@ -14,7 +14,7 @@ const routes: Routes = [{
       component: SmartTableComponent,
     },
     {
-      path: 'category',
+      path: 'category-table',
       component: CategoryTableComponent,
     },
   ],
@@ -29,4 +29,5 @@ export class TablesRoutingModule { }
 export const routedComponents = [
   TablesComponent,
   SmartTableComponent,
+  CategoryTableComponent,
 ];

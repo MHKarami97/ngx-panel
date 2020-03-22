@@ -1,4 +1,3 @@
-import { Category } from './../../../models/category/category.module';
 import { CategoryService } from './../../../services/category.service';
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
@@ -49,7 +48,7 @@ export class CategoryTableComponent implements OnInit {
         title: 'نام',
         type: 'string',
       },
-      parentName: {
+      parentCategoryName: {
         title: 'دسته مادر',
         type: 'string',
       },
@@ -73,28 +72,34 @@ export class CategoryTableComponent implements OnInit {
     this.dataService.get().subscribe(
       results => {
         this.isFetching = false;
-        this.source.load(results);
+        this.source.load(results.data.map(function (val, i) {
+          if (val.parentCategoryName === null)
+            val.parentCategoryName = 'ندارد';
+
+          return val;
+        }));
       },
       error => {
         this.isFetching = false;
         this.error = error.message;
+        this.onError();
       },
     );
+  }
 
-    if (this.isFetching && !this.error) {
-      const config = {
-        destroyByClick: true,
-        duration: 3000,
-        hasIcon: true,
-        position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
-        preventDuplicates: true,
-      };
+  onError() {
+    const config = {
+      destroyByClick: true,
+      duration: 3000,
+      hasIcon: true,
+      position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
+      preventDuplicates: true,
+    };
 
-      this.toastrService.danger(
-        this.error,
-        'خطا',
-        config);
-    }
+    this.toastrService.danger(
+      this.error,
+      'خطا',
+      config);
   }
 
   onDeleteConfirm(event): void {
@@ -115,7 +120,7 @@ export class CategoryTableComponent implements OnInit {
           search: query,
         },
         {
-          field: 'parentName',
+          field: 'parentCategoryName',
           search: query,
         },
       ], false, true);

@@ -10,7 +10,9 @@ import { NbAuthService } from '@nebular/auth';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/do';
 import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class HttpInterceptorService implements HttpInterceptor {
 
   constructor(private authService: NbAuthService, private router: Router, private toastrService: NbToastrService) { }
@@ -19,9 +21,9 @@ export class HttpInterceptorService implements HttpInterceptor {
 
     const baseUrl = 'https://localhost:44339/api/v1/';
 
-    req.clone({
-      url: baseUrl + req.url,
-    });
+    const changeUrl = req.clone({ url: baseUrl + req.url });
+
+    req = changeUrl;
 
     // if (req.method !== 'GET' && req.url.includes('/user/')) {
 
