@@ -2,7 +2,6 @@ import { CategoryService } from './../../../services/category.service';
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Title } from '@angular/platform-browser';
-import { SmartTableData } from '../../../@core/data/smart-table';
 import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
 
 @Component({
@@ -54,7 +53,7 @@ export class CategoryTableComponent implements OnInit {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: SmartTableData, private title: Title,
+  constructor(private title: Title,
     private dataService: CategoryService, private toastrService: NbToastrService) {
   }
 
