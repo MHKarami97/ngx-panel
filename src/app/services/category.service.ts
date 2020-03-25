@@ -2,7 +2,7 @@ import { Observable, throwError, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Category } from '../models/category/category.module';
+import { Category, CategoryCreate } from '../models/category/category.module';
 import { Api } from '../models/base/api.model';
 
 @Injectable({
@@ -39,18 +39,18 @@ export class CategoryService {
     );
   }
 
-  create(product: Category): Observable<Category> {
-    return this.http.post<Category>(this.apiUrl + 'create', product).pipe(
+  create(product: CategoryCreate): Observable<Api<CategoryCreate>> {
+    return this.http.post<Api<CategoryCreate>>(this.apiUrl + 'create', product).pipe(
       tap(),
-      catchError(this.handleError<Category>('create')),
-    );
+      catchError(this.handleError('get', new Api<Category>()),
+    ));
   }
 
-  update(id: number, product: Category): Observable<any> {
+  update(id: number, product: CategoryCreate): Observable<any> {
     const url = `${this.apiUrl}update/${id}`;
     return this.http.put(url, product).pipe(
       tap(),
-      catchError(this.handleError<any>('update')),
+      catchError(this.handleError<CategoryCreate>('update')),
     );
   }
 

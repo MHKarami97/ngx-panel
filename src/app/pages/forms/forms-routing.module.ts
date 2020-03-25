@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { FormsComponent } from './forms.component';
 import { FormLayoutsComponent } from './form-layouts/form-layouts.component';
+import { AddCategoryComponent } from './add-category/add-category.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
       {
         path: 'layouts',
         component: FormLayoutsComponent,
+      },
+      {
+        path: 'add-category',
+        component: AddCategoryComponent,
       },
     ],
   },

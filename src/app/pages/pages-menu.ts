@@ -46,7 +46,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'افزودن دسته بندی',
-        link: '/pages/forms/layouts',
+        link: '/pages/forms/add-category',
       },
     ],
   },

@@ -1,3 +1,4 @@
+import { AddCategoryComponent } from './add-category/add-category.component';
 import { NgModule } from '@angular/core';
 import {
   NbActionsModule,
@@ -36,6 +37,7 @@ import { FormsModule as ngFormsModule } from '@angular/forms';
   declarations: [
     FormsComponent,
     FormLayoutsComponent,
+    AddCategoryComponent,
   ],
 })
 export class FormsModule { }
