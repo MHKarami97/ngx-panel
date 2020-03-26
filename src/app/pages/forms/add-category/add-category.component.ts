@@ -12,7 +12,7 @@ import { Api } from '../../../models/base/api.model';
 })
 export class AddCategoryComponent implements OnInit {
 
-  isFetching = false;
+  loading = false;
   error = null;
 
   categoryInput: CategoryCreate = { id: 0, name: '', parentCategoryId: 0 };
@@ -27,18 +27,17 @@ export class AddCategoryComponent implements OnInit {
   ngOnInit(): void {
     this.title.setTitle('پنل مدیریت' + ' | ' + 'افزودن ' + 'دسته بندی');
 
-    this.isFetching = true;
+    this.loading = true;
     this.dataService.getAllMainCat().subscribe(
       results => {
-        this.isFetching = false;
         this.mainCats = results.data;
       },
       error => {
-        this.isFetching = false;
         this.error = error.message;
         this.onError();
       },
     );
+    this.loading = false;
   }
 
   onError() {
@@ -88,11 +87,9 @@ export class AddCategoryComponent implements OnInit {
 
   add(): void {
     this.submitted = true;
-
-    this.isFetching = true;
+    this.loading = true;
     this.dataService.create(this.categoryInput).subscribe(
       results => {
-        this.isFetching = false;
         this.result = results;
 
         if (this.result.isSuccess) {
@@ -102,10 +99,10 @@ export class AddCategoryComponent implements OnInit {
         }
       },
       error => {
-        this.isFetching = false;
         this.error = error.message;
         this.onError();
       },
     );
+    this.loading = false;
   }
 }
