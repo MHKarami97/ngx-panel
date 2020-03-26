@@ -60,15 +60,15 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'لیست بنر ها',
-        link: '/pages/tables/smart-table',
+        link: '/pages/tables/banner-table',
       },
       {
         title: 'مدیریت بنر ها',
-        link: '/pages/tables/smart-table',
+        link: '/pages/tables/banner-table',
       },
       {
         title: 'افزودن بنر',
-        link: '/pages/forms/layouts',
+        link: '/pages/forms/add-banner',
       },
     ],
   },

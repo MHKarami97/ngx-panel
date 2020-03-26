@@ -1,4 +1,4 @@
-import { AddBannerComponent } from './add-category copy/add-banner.component';
+import { AddBannerComponent } from './add-banner/add-banner.component';
 import { AddCategoryComponent } from './add-category/add-category.component';
 import { NgModule } from '@angular/core';
 import {
