@@ -17,6 +17,8 @@ export class AddBannerComponent implements OnInit {
   loading = false;
   error = null;
 
+  public uploadedFiles: Array<File> = [];
+
   input: BannerCreate = { id: 0, image: '', type: 0, userId: 0 };
   users: User[] = [];
   result: Api<Banner>;

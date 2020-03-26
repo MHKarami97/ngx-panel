@@ -1,5 +1,6 @@
 import { AddBannerComponent } from './add-banner/add-banner.component';
 import { AddCategoryComponent } from './add-category/add-category.component';
+import { FileUploadModule } from '@iplab/ngx-file-upload';
 import { NgModule } from '@angular/core';
 import {
   NbActionsModule,
@@ -18,7 +19,7 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { FormsRoutingModule } from './forms-routing.module';
 import { FormsComponent } from './forms.component';
 import { FormLayoutsComponent } from './form-layouts/form-layouts.component';
-import { FormsModule as ngFormsModule } from '@angular/forms';
+import { FormsModule as ngFormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -36,6 +37,8 @@ import { FormsModule as ngFormsModule } from '@angular/forms';
     NbIconModule,
     ngFormsModule,
     NbSpinnerModule,
+    ReactiveFormsModule,
+    FileUploadModule,
   ],
   declarations: [
     FormsComponent,

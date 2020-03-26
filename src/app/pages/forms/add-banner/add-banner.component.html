@@ -3,31 +3,13 @@
     <nb-card accent="info" [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerSize="large">
       <nb-card-header>افزودن</nb-card-header>
       <nb-card-body>
-        <form (ngSubmit)="add()" #form="ngForm" aria-labelledby="title">
+        <form (ngSubmit)="add()" #form="ngForm" aria-labelledby="title" enctype="multipart/form-data">
           <div class="row">
             <div class="col-sm-6">
               <div class="form-group">
-                <label for="name" class="label">نوع</label>
-                <input type="text" nbInput fullWidth [(ngModel)]="categoryInput.name" name="name" id="name"
-                  pattern="^[\u0600-\u06FF\s]+$" #category="ngModel"
-                  [status]="category.dirty ? (category.invalid ? 'danger' : 'success') : ''"
-                  [attr.aria-invalid]="category.invalid && category.touched ? true : null" placeholder="نام دسته"
-                  autocomplete="off" required>
-                <ng-container *ngIf="category.invalid && category.touched">
-                  <p class="caption status-danger" *ngIf="category.errors?.required">
-                    وارد کردن این آیتم اجباری است
-                  </p>
-                  <p class="caption status-danger" *ngIf="category.errors?.pattern">
-                    مقدار وارد شده نامعتبر است (فقط حروف فارسی مورد قبول است)
-                  </p>
-                </ng-container>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="form-group">
                 <label for="type" class="label">نوع</label>
-                <nb-select selected="0" fullWidth [(ngModel)]="input.type" name="type" id="type"
-                  #type="ngModel" [attr.aria-invalid]="type.invalid && type.touched ? true : null" required>
+                <nb-select selected="0" fullWidth [(ngModel)]="input.type" name="type" id="type" #type="ngModel"
+                  [attr.aria-invalid]="type.invalid && type.touched ? true : null" required>
                   <nb-option value="0" selected disabled>انتخاب نوع</nb-option>
                   <nb-option value="1">ثابت</nb-option>
                   <nb-option value="2">چندتایی</nb-option>
@@ -45,8 +27,8 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="userId" class="label">کاربر</label>
-                <nb-select selected="0" fullWidth [(ngModel)]="input.userId" name="userId" id="userId"
-                  #userId="ngModel" [attr.aria-invalid]="userId.invalid && userId.touched ? true : null" required>
+                <nb-select selected="0" fullWidth [(ngModel)]="input.userId" name="userId" id="userId" #userId="ngModel"
+                  [attr.aria-invalid]="userId.invalid && userId.touched ? true : null" required>
                   <nb-option value="0" selected disabled>انتخاب کاربر</nb-option>
                   <nb-option *ngFor="let user of users" [value]="user.id">
                     {{ user.FullName }}
@@ -57,6 +39,26 @@
                     وارد کردن این آیتم اجباری است
                   </p>
                   <p class="caption status-danger" *ngIf="userId.errors?.pattern">
+                    مقدار وارد شده نامعتبر است
+                  </p>
+                </ng-container>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="userId" class="label">عکس بنر</label>
+                <file-upload [(ngModel)]="uploadedFiles" #fileInput="ngModel" name="files" fileslimit="1"
+                  accept=".jpg, .png, .jpeg" maxsize="10 MB" multiple="false" required>
+                  <ng-template let-isFileDragDropAvailable="isFileDragDropAvailable" #placeholder>
+                    <span *ngIf="isFileDragDropAvailable">فایل خود را انتخاب یا درگ کنید</span>
+                    <span *ngIf="!isFileDragDropAvailable">فایل خود را انتخاب کنید</span>
+                  </ng-template>
+                </file-upload>
+                <ng-container *ngIf="fileInput.invalid && fileInput.touched">
+                  <p class="caption status-danger" *ngIf="fileInput.errors?.required">
+                    وارد کردن این آیتم اجباری است
+                  </p>
+                  <p class="caption status-danger" *ngIf="fileInput.errors?.pattern">
                     مقدار وارد شده نامعتبر است
                   </p>
                 </ng-container>
