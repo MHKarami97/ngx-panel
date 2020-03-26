@@ -1,36 +1,38 @@
-import { CategoryCreate, Category } from './../../../models/category/category.module';
+import { User } from './../../../models/user/user.module';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { CategoryService } from '../../../services/category.service';
 import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
 import { Api } from '../../../models/base/api.model';
+import { Banner, BannerCreate } from '../../../models/more/banner.module';
+import { BannerService } from '../../../services/banner.service';
+import { UserService } from '../../../services/user.service';
 
 @Component({
-  selector: 'ngx-add-category',
-  styleUrls: ['./add-category.component.scss'],
-  templateUrl: './add-category.component.html',
+  selector: 'ngx-add-banner',
+  styleUrls: ['./add-banner.component.scss'],
+  templateUrl: './add-banner.component.html',
 })
-export class AddCategoryComponent implements OnInit {
+export class AddBannerComponent implements OnInit {
 
   loading = false;
   error = null;
 
-  input: CategoryCreate = { id: 0, name: '', parentCategoryId: 0 };
-  mainCats: Category[] = [];
-  result: Api<CategoryCreate>;
+  input: BannerCreate = { id: 0, image: '', type: 0, userId: 0 };
+  users: User[] = [];
+  result: Api<Banner>;
   submitted: boolean = false;
 
   constructor(private title: Title,
-    private dataService: CategoryService, private toastrService: NbToastrService) {
+    private dataService: BannerService, private userService: UserService, private toastrService: NbToastrService) {
   }
 
   ngOnInit(): void {
-    this.title.setTitle('پنل مدیریت' + ' | ' + 'افزودن ' + 'دسته بندی');
+    this.title.setTitle('پنل مدیریت' + ' | ' + 'افزودن ' + 'بنر');
 
     this.loading = true;
-    this.dataService.getAllMainCat().subscribe(
+    this.userService.get().subscribe(
       results => {
-        this.mainCats = results.data;
+        this.users = results.data;
       },
       error => {
         this.error = error.message;

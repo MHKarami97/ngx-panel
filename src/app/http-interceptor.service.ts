@@ -12,6 +12,7 @@ import 'rxjs/add/operator/do';
 import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
 import { Injectable } from '@angular/core';
 import { stringify } from 'querystring';
+import { Setting } from './setting';
 
 @Injectable()
 export class HttpInterceptorService implements HttpInterceptor {
@@ -21,7 +22,7 @@ export class HttpInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
 
-    const baseUrl = 'https://localhost:44339/api/v1/';
+    const baseUrl = Setting.baseUrl + 'api/v1/';
 
     const changeUrl = req.clone({ url: baseUrl + req.url });
 

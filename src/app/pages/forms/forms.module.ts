@@ -1,3 +1,4 @@
+import { AddBannerComponent } from './add-category copy/add-banner.component';
 import { AddCategoryComponent } from './add-category/add-category.component';
 import { NgModule } from '@angular/core';
 import {
@@ -40,6 +41,7 @@ import { FormsModule as ngFormsModule } from '@angular/forms';
     FormsComponent,
     FormLayoutsComponent,
     AddCategoryComponent,
+    AddBannerComponent,
   ],
 })
 export class FormsModule { }

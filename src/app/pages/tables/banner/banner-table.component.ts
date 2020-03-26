@@ -1,15 +1,16 @@
-import { CategoryService } from './../../../services/category.service';
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Title } from '@angular/platform-browser';
 import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
+import { BannerService } from '../../../services/banner.service';
+import { Setting } from '../../../setting';
 
 @Component({
-  selector: 'ngx-category-table',
-  templateUrl: './category-table.component.html',
-  styleUrls: ['./category-table.component.scss'],
+  selector: 'ngx-banner-table',
+  templateUrl: './banner-table.component.html',
+  styleUrls: ['./banner-table.component.scss'],
 })
-export class CategoryTableComponent implements OnInit {
+export class BannerTableComponent implements OnInit {
 
   loading = false;
   error = null;
@@ -40,13 +41,18 @@ export class CategoryTableComponent implements OnInit {
         type: 'number',
         editable: false,
       },
-      name: {
-        title: 'نام',
-        type: 'string',
+      image: {
+        title: 'عکس',
+        type: 'html',
+        editable: false,
       },
-      parentCategoryName: {
-        title: 'دسته مادر',
-        type: 'string',
+      type: {
+        title: 'نوع',
+        type: 'number',
+      },
+      userId: {
+        title: 'کاربر',
+        type: 'number',
       },
     },
   };
@@ -54,19 +60,17 @@ export class CategoryTableComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private title: Title,
-    private dataService: CategoryService, private toastrService: NbToastrService) {
+    private dataService: BannerService, private toastrService: NbToastrService) {
   }
 
   ngOnInit(): void {
-    this.title.setTitle('پنل مدیریت' + ' | ' + 'لیست ' + 'دسته بندی ها');
+    this.title.setTitle('پنل مدیریت' + ' | ' + 'لیست ' + 'بنرها');
 
     this.loading = true;
     this.dataService.get().subscribe(
       results => {
-        this.source.load(results.data.map(function (val, i) {
-          if (val.parentCategoryName === null)
-            val.parentCategoryName = 'ندارد';
-
+        this.source.load(results.data.map(function (val) {
+          val.image = `<img scr="${Setting.baseUrl}uploads/${val.image}" height="70" width="70" />`;
           return val;
         }));
       },
@@ -107,11 +111,11 @@ export class CategoryTableComponent implements OnInit {
     } else {
       this.source.setFilter([
         {
-          field: 'name',
+          field: 'type',
           search: query,
         },
         {
-          field: 'parentCategoryName',
+          field: 'userId',
           search: query,
         },
       ], false, true);

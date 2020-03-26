@@ -1,3 +1,4 @@
+import { AddBannerComponent } from './add-category copy/add-banner.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -17,6 +18,10 @@ const routes: Routes = [
       {
         path: 'add-category',
         component: AddCategoryComponent,
+      },
+      {
+        path: 'add-banner',
+        component: AddBannerComponent,
       },
     ],
   },
