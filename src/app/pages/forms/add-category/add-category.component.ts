@@ -28,7 +28,7 @@ export class AddCategoryComponent implements OnInit {
     this.title.setTitle('پنل مدیریت' + ' | ' + 'افزودن ' + 'دسته بندی');
 
     this.isFetching = true;
-    this.dataService.get().subscribe(
+    this.dataService.getAllMainCat().subscribe(
       results => {
         this.isFetching = false;
         this.mainCats = results.data;

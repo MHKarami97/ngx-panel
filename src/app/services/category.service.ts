@@ -61,4 +61,14 @@ export class CategoryService {
       catchError(this.handleError<Category>('delete')),
     );
   }
+
+  // *******************
+
+  getAllMainCat(): Observable<Api<Category[]>> {
+    return this.http.get<Api<Category[]>>(this.apiUrl + 'getAllMainCat')
+      .pipe(
+        tap(),
+        catchError(this.handleError('get', new Api<Category[]>()),
+      ));
+  }
 }

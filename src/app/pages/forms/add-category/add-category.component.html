@@ -12,6 +12,7 @@
                   pattern="^[\u0600-\u06FF\s]+$" #category="ngModel"
                   [status]="category.dirty ? (category.invalid ? 'danger' : 'success') : ''"
                   [attr.aria-invalid]="category.invalid && category.touched ? true : null" placeholder="نام دسته"
+                  autocomplete="off"
                   required>
                 <ng-container *ngIf="category.invalid && category.touched">
                   <p class="caption status-danger" *ngIf="category.errors?.required">
@@ -29,10 +30,10 @@
                 <nb-select selected="0" fullWidth [(ngModel)]="categoryInput.parentCategoryId" name="parentCategoryId"
                   id="parentCategoryId" #parent="ngModel"
                   [attr.aria-invalid]="parent.invalid && parent.touched ? true : null" placeholder="انتخاب دسته مادر">
-                  <option value="0" selected disabled>انتخاب دسته مادر</option>
-                  <option *ngFor="let cat of mainCats" [value]="cat.id">
+                  <nb-option value="0" selected disabled>انتخاب دسته مادر</nb-option>
+                  <nb-option *ngFor="let cat of mainCats" [value]="cat.id">
                     {{ cat.name }}
-                  </option>
+                  </nb-option>
                 </nb-select>
                 <ng-container *ngIf="parent.invalid && parent.touched">
                   <p class="caption status-danger" *ngIf="parent.errors?.required">
