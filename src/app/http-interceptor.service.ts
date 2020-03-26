@@ -23,11 +23,9 @@ export class HttpInterceptorService implements HttpInterceptor {
 
     const changeUrl = req.clone({ url: baseUrl + req.url });
 
-    req = changeUrl;
-
-    // if (req.method !== 'GET' && req.url.includes('/user/')) {
-
-    // }
+    if (!req.url.includes('tokenbybody')) {
+      req = changeUrl;
+    }
 
     const config = {
       destroyByClick: true,
