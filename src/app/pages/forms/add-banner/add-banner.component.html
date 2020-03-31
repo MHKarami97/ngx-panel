@@ -54,12 +54,18 @@
                     <span *ngIf="!isFileDragDropAvailable">فایل خود را انتخاب کنید</span>
                   </ng-template>
                 </file-upload>
-                <ng-container *ngIf="fileInput.invalid && fileInput.touched">
+                <ng-container *ngIf="(fileInput.errors || fileInput.invalid) && fileInput.touched">
                   <p class="caption status-danger" *ngIf="fileInput.errors?.required">
                     وارد کردن این آیتم اجباری است
                   </p>
-                  <p class="caption status-danger" *ngIf="fileInput.errors?.pattern">
-                    مقدار وارد شده نامعتبر است
+                  <p class="caption status-danger" *ngIf="fileInput.errors?.sizeRange">
+                    حجم فایل انتخاب شده نامعتبر است
+                  </p>
+                  <p class="caption status-danger" *ngIf="fileInput.errors?.fileTypes">
+                    نوع فایل انتخاب شده نامعتبر است
+                  </p>
+                  <p class="caption status-danger" *ngIf="fileInput.errors?.filesLimit">
+                    تعداد فایل انتخاب شده نامعتبر است
                   </p>
                 </ng-container>
               </div>
