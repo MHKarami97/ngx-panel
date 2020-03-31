@@ -6,19 +6,17 @@ import {
   HttpResponse,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { NbAuthService, NbTokenService, NbAuthSimpleToken, NbAuthJWTToken } from '@nebular/auth';
+import { NbAuthService, NbAuthSimpleToken } from '@nebular/auth';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/do';
 import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
 import { Injectable } from '@angular/core';
-import { stringify } from 'querystring';
 import { Setting } from './setting';
 
 @Injectable()
 export class HttpInterceptorService implements HttpInterceptor {
 
-  constructor(private authService: NbAuthService, private tokenService: NbTokenService,
-    private router: Router, private toastrService: NbToastrService) { }
+  constructor(private authService: NbAuthService, private router: Router, private toastrService: NbToastrService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
 
