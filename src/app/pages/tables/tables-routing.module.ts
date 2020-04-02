@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { TablesComponent } from './tables.component';
 import { SmartTableComponent } from './smart-table/smart-table.component';
 import { CategoryTableComponent } from './category/category-table.component';
+import { BannerTableComponent } from './banner/banner-table.component';
 
 const routes: Routes = [{
   path: '',
@@ -16,6 +16,10 @@ const routes: Routes = [{
     {
       path: 'category-table',
       component: CategoryTableComponent,
+    },
+    {
+      path: 'banner-table',
+      component: BannerTableComponent,
     },
   ],
 }];
@@ -30,4 +34,5 @@ export const routedComponents = [
   TablesComponent,
   SmartTableComponent,
   CategoryTableComponent,
+  BannerTableComponent,
 ];

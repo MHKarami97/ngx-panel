@@ -1,7 +1,7 @@
-import { CategoryService } from './../../../services/category.service';
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Title } from '@angular/platform-browser';
+import { CategoryService } from './../../../services/category.service';
 import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
 
 @Component({
@@ -63,7 +63,7 @@ export class CategoryTableComponent implements OnInit {
     this.loading = true;
     this.dataService.get().subscribe(
       results => {
-        this.source.load(results.data.map(function (val, i) {
+        this.source.load(results.data.map(function (val) {
           if (val.parentCategoryName === null)
             val.parentCategoryName = 'ندارد';
 

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Title } from '@angular/platform-browser';
-import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
 import { BannerService } from '../../../services/banner.service';
+import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
 import { Setting } from '../../../setting';
 
 @Component({
