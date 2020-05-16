@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Title } from '@angular/platform-browser';
-import { BannerService } from '../../../services/banner.service';
+import { CategoryService } from './../../../services/category.service';
 import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
-import { Setting } from '../../../setting';
 
 @Component({
-  selector: 'ngx-banner-table',
-  templateUrl: './banner-table.component.html',
-  styleUrls: ['./banner-table.component.scss'],
+  selector: 'ngx-request-table',
+  templateUrl: './request-table.component.html',
+  styleUrls: ['./request-table.component.scss'],
 })
-export class BannerTableComponent implements OnInit {
+export class RequestTableComponent implements OnInit {
 
   loading = false;
   error = null;
@@ -41,18 +40,13 @@ export class BannerTableComponent implements OnInit {
         type: 'number',
         editable: false,
       },
-      image: {
-        title: 'عکس',
-        type: 'html',
-        editable: false,
+      name: {
+        title: 'نام',
+        type: 'string',
       },
-      type: {
-        title: 'نوع',
-        type: 'number',
-      },
-      userId: {
-        title: 'کاربر',
-        type: 'number',
+      parentCategoryName: {
+        title: 'دسته مادر',
+        type: 'string',
       },
     },
   };
@@ -60,22 +54,19 @@ export class BannerTableComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private title: Title,
-    private dataService: BannerService, private toastrService: NbToastrService) {
+    private dataService: CategoryService, private toastrService: NbToastrService) {
   }
 
   ngOnInit(): void {
-    this.title.setTitle('پنل مدیریت' + ' | ' + 'لیست ' + 'بنرها');
+    this.title.setTitle('پنل مدیریت' + ' | ' + 'لیست ' + 'دسته بندی ها');
 
-    this.loadData();
-  }
-
-  loadData() {
     this.loading = true;
-
     this.dataService.get().subscribe(
       results => {
         this.source.load(results.data.map(function (val) {
-          val.image = `<img scr="${Setting.baseUrl}uploads/${val.image}" height="70" width="70" />`;
+          if (val.parentCategoryName === null)
+            val.parentCategoryName = 'ندارد';
+
           return val;
         }));
       },
@@ -84,7 +75,6 @@ export class BannerTableComponent implements OnInit {
         this.onError();
       },
     );
-
     this.loading = false;
   }
 
@@ -117,11 +107,11 @@ export class BannerTableComponent implements OnInit {
     } else {
       this.source.setFilter([
         {
-          field: 'type',
+          field: 'name',
           search: query,
         },
         {
-          field: 'userId',
+          field: 'parentCategoryName',
           search: query,
         },
       ], false, true);

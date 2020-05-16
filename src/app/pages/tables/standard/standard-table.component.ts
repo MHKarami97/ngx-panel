@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Title } from '@angular/platform-browser';
-
-import { SmartTableData } from '../../../@core/data/smart-table';
+import { CategoryService } from './../../../services/category.service';
+import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
 
 @Component({
-  selector: 'ngx-smart-table',
-  templateUrl: './smart-table.component.html',
-  styleUrls: ['./smart-table.component.scss'],
+  selector: 'ngx-standard-table',
+  templateUrl: './standard-table.component.html',
+  styleUrls: ['./standard-table.component.scss'],
 })
-export class SmartTableComponent implements OnInit {
+export class StandardTableComponent implements OnInit {
+
+  loading = false;
+  error = null;
 
   settings = {
     actions: {
@@ -37,37 +40,57 @@ export class SmartTableComponent implements OnInit {
         type: 'number',
         editable: false,
       },
-      firstName: {
+      name: {
         title: 'نام',
         type: 'string',
       },
-      lastName: {
-        title: 'نام خانوادگی',
+      parentCategoryName: {
+        title: 'دسته مادر',
         type: 'string',
-      },
-      username: {
-        title: 'نام کاربری',
-        type: 'string',
-      },
-      email: {
-        title: 'ایمیل',
-        type: 'string',
-      },
-      age: {
-        title: 'سن',
-        type: 'number',
       },
     },
   };
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: SmartTableData, private title: Title) {
-    const data = this.service.getData();
-    this.source.load(data);
+  constructor(private title: Title,
+    private dataService: CategoryService, private toastrService: NbToastrService) {
   }
+
   ngOnInit(): void {
-    this.title.setTitle('پنل مدیریت'  + ' | ' + 'لیست');
+    this.title.setTitle('پنل مدیریت' + ' | ' + 'لیست ' + 'دسته بندی ها');
+
+    this.loading = true;
+    this.dataService.get().subscribe(
+      results => {
+        this.source.load(results.data.map(function (val) {
+          if (val.parentCategoryName === null)
+            val.parentCategoryName = 'ندارد';
+
+          return val;
+        }));
+      },
+      error => {
+        this.error = error.message;
+        this.onError();
+      },
+    );
+    this.loading = false;
+  }
+
+  onError() {
+    const config = {
+      destroyByClick: true,
+      duration: 3000,
+      hasIcon: true,
+      position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
+      preventDuplicates: true,
+    };
+
+    this.toastrService.danger(
+      this.error,
+      'خطا',
+      config);
   }
 
   onDeleteConfirm(event): void {
@@ -84,19 +107,11 @@ export class SmartTableComponent implements OnInit {
     } else {
       this.source.setFilter([
         {
-          field: 'firstName',
+          field: 'name',
           search: query,
         },
         {
-          field: 'lastName',
-          search: query,
-        },
-        {
-          field: 'username',
-          search: query,
-        },
-        {
-          field: 'email',
+          field: 'parentCategoryName',
           search: query,
         },
       ], false, true);
