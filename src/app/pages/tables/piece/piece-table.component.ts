@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Title } from '@angular/platform-browser';
 import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
-import { StandardService } from '../../../services/standard.service';
+import { PriceService } from '../../../services/price.service';
+import { PieceService } from '../../../services/piece.service';
 
 @Component({
-  selector: 'ngx-standard-table',
-  templateUrl: './standard-table.component.html',
-  styleUrls: ['./standard-table.component.scss'],
+  selector: 'ngx-piece-table',
+  templateUrl: './piece-table.component.html',
+  styleUrls: ['./piece-table.component.scss'],
 })
-export class StandardTableComponent implements OnInit {
+export class PieceTableComponent implements OnInit {
 
   loading = false;
   error = null;
@@ -44,25 +45,17 @@ export class StandardTableComponent implements OnInit {
         title: 'نام قطعه',
         type: 'string',
       },
-      createdDate: {
-        title: 'تاریخ ایجاد',
-        type: 'string',
-      },
-      updatedDate: {
-        title: 'تاریخ آپدیت',
-        type: 'string',
-      },
     },
   };
 
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private title: Title,
-    private dataService: StandardService, private toastrService: NbToastrService) {
+    private dataService: PieceService, private toastrService: NbToastrService) {
   }
 
   ngOnInit(): void {
-    this.title.setTitle('پنل مدیریت' + ' | ' + 'لیست ' + 'استاندارد ها');
+    this.title.setTitle('پنل مدیریت' + ' | ' + 'لیست ' + 'قطعه ها');
 
     this.loading = true;
     this.dataService.get().subscribe(

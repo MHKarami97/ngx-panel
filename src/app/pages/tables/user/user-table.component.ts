@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Title } from '@angular/platform-browser';
-import { CategoryService } from './../../../services/category.service';
 import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'ngx-user-table',
@@ -40,12 +40,12 @@ export class UserTableComponent implements OnInit {
         type: 'number',
         editable: false,
       },
-      name: {
+      fullName: {
         title: 'نام',
         type: 'string',
       },
-      parentCategoryName: {
-        title: 'دسته مادر',
+      phoneNumber: {
+        title: 'موبایل',
         type: 'string',
       },
     },
@@ -54,19 +54,16 @@ export class UserTableComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private title: Title,
-    private dataService: CategoryService, private toastrService: NbToastrService) {
+    private dataService: UserService, private toastrService: NbToastrService) {
   }
 
   ngOnInit(): void {
-    this.title.setTitle('پنل مدیریت' + ' | ' + 'لیست ' + 'دسته بندی ها');
+    this.title.setTitle('پنل مدیریت' + ' | ' + 'لیست ' + 'کاربر ها');
 
     this.loading = true;
     this.dataService.get().subscribe(
       results => {
         this.source.load(results.data.map(function (val) {
-          if (val.parentCategoryName === null)
-            val.parentCategoryName = 'ندارد';
-
           return val;
         }));
       },
@@ -107,11 +104,11 @@ export class UserTableComponent implements OnInit {
     } else {
       this.source.setFilter([
         {
-          field: 'name',
+          field: 'fullName',
           search: query,
         },
         {
-          field: 'parentCategoryName',
+          field: 'phoneNumber',
           search: query,
         },
       ], false, true);

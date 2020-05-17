@@ -31,34 +31,34 @@ export class PieceService {
       ));
   }
 
-  getById(id: number): Observable<Piece> {
+  getById(id: number): Observable<Api<Piece>> {
     const url = `${this.apiUrl}get/${id}`;
-    return this.http.get<Piece>(url).pipe(
+    return this.http.get<Api<Piece>>(url).pipe(
       tap(),
-      catchError(this.handleError<Piece>(`getById id=${id}`)),
+      catchError(this.handleError<Api<Piece>>(`getById id=${id}`)),
     );
   }
 
-  create(product: PieceCreate): Observable<Api<PieceCreate>> {
-    return this.http.post<Api<PieceCreate>>(this.apiUrl + 'create', product).pipe(
+  create(product: PieceCreate): Observable<Api<Piece>> {
+    return this.http.post<Api<Piece>>(this.apiUrl + 'create', product).pipe(
       tap(),
-      catchError(this.handleError('get', new Api<PieceCreate>()),
+      catchError(this.handleError('get', new Api<Piece>()),
     ));
   }
 
-  update(id: number, product: PieceCreate): Observable<any> {
+  update(id: number, product: PieceCreate): Observable<Api<Piece>> {
     const url = `${this.apiUrl}update/${id}`;
-    return this.http.put(url, product).pipe(
+    return this.http.put<Api<Piece>>(url, product).pipe(
       tap(),
-      catchError(this.handleError<PieceCreate>('update')),
+      catchError(this.handleError<Api<Piece>>('update')),
     );
   }
 
-  delete(id: any): Observable<Piece> {
+  delete(id: any): Observable<Api<Piece>> {
     const url = `${this.apiUrl}delete/${id}`;
-    return this.http.delete<Piece>(url).pipe(
+    return this.http.delete<Api<Piece>>(url).pipe(
       tap(),
-      catchError(this.handleError<Piece>('delete')),
+      catchError(this.handleError<Api<Piece>>('delete')),
     );
   }
 }

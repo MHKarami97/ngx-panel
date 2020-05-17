@@ -31,34 +31,34 @@ export class StandardService {
       ));
   }
 
-  getById(id: number): Observable<Standard> {
+  getById(id: number): Observable<Api<Standard>> {
     const url = `${this.apiUrl}get/${id}`;
-    return this.http.get<Standard>(url).pipe(
+    return this.http.get<Api<Standard>>(url).pipe(
       tap(),
-      catchError(this.handleError<Standard>(`getById id=${id}`)),
+      catchError(this.handleError<Api<Standard>>(`getById id=${id}`)),
     );
   }
 
-  create(product: StandardCreate): Observable<Api<StandardCreate>> {
-    return this.http.post<Api<StandardCreate>>(this.apiUrl + 'create', product).pipe(
+  create(product: StandardCreate): Observable<Api<Standard>> {
+    return this.http.post<Api<Standard>>(this.apiUrl + 'create', product).pipe(
       tap(),
-      catchError(this.handleError('get', new Api<StandardCreate>()),
+      catchError(this.handleError('get', new Api<Standard>()),
     ));
   }
 
-  update(id: number, product: StandardCreate): Observable<any> {
+  update(id: number, product: StandardCreate): Observable<Api<Standard>> {
     const url = `${this.apiUrl}update/${id}`;
-    return this.http.put(url, product).pipe(
+    return this.http.put<Api<Standard>>(url, product).pipe(
       tap(),
-      catchError(this.handleError<StandardCreate>('update')),
+      catchError(this.handleError<Api<Standard>>('update')),
     );
   }
 
-  delete(id: any): Observable<Standard> {
+  delete(id: any): Observable<Api<Standard>> {
     const url = `${this.apiUrl}delete/${id}`;
-    return this.http.delete<Standard>(url).pipe(
+    return this.http.delete<Api<Standard>>(url).pipe(
       tap(),
-      catchError(this.handleError<Standard>('delete')),
+      catchError(this.handleError<Api<Standard>>('delete')),
     );
   }
 }

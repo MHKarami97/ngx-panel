@@ -31,11 +31,11 @@ export class ProducerService {
       ));
   }
 
-  getById(id: number): Observable<Producer> {
+  getById(id: number): Observable<Api<Producer>> {
     const url = `${this.apiUrl}get/${id}`;
-    return this.http.get<Producer>(url).pipe(
+    return this.http.get<Api<Producer>>(url).pipe(
       tap(),
-      catchError(this.handleError<Producer>(`getById id=${id}`)),
+      catchError(this.handleError<Api<Producer>>(`getById id=${id}`)),
     );
   }
 
@@ -46,19 +46,19 @@ export class ProducerService {
     ));
   }
 
-  update(id: number, product: ProducerCreate): Observable<any> {
+  update(id: number, product: ProducerCreate): Observable<Api<Producer>> {
     const url = `${this.apiUrl}update/${id}`;
-    return this.http.put(url, product).pipe(
+    return this.http.put<Api<Producer>>(url, product).pipe(
       tap(),
-      catchError(this.handleError<ProducerCreate>('update')),
+      catchError(this.handleError<Api<Producer>>('update')),
     );
   }
 
-  delete(id: any): Observable<Producer> {
+  delete(id: any): Observable<Api<Producer>> {
     const url = `${this.apiUrl}delete/${id}`;
-    return this.http.delete<Producer>(url).pipe(
+    return this.http.delete<Api<Producer>>(url).pipe(
       tap(),
-      catchError(this.handleError<Producer>('delete')),
+      catchError(this.handleError<Api<Producer>>('delete')),
     );
   }
 }

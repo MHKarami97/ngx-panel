@@ -23,11 +23,11 @@ export class RequestService {
     };
   }
 
-  getCustom(tpye: number): Observable<Request> {
+  getCustom(tpye: number): Observable<Api<Request[]>> {
     const url = `${this.apiUrl}getcustom/${tpye}`;
-    return this.http.get<Request>(url).pipe(
+    return this.http.get<Api<Request[]>>(url).pipe(
       tap(),
-      catchError(this.handleError<Request>(`getById id=${tpye}`)),
+      catchError(this.handleError<Api<Request[]>>(`getById id=${tpye}`)),
     );
   }
 
@@ -38,19 +38,19 @@ export class RequestService {
     ));
   }
 
-  update(id: number, product: Request): Observable<any> {
+  update(id: number, product: Request): Observable<Api<Request>> {
     const url = `${this.apiUrl}update/${id}`;
-    return this.http.put(url, product).pipe(
+    return this.http.put<Api<Request>>(url, product).pipe(
       tap(),
-      catchError(this.handleError<Request>('update')),
+      catchError(this.handleError<Api<Request>>('update')),
     );
   }
 
-  delete(id: any): Observable<Request> {
+  delete(id: any): Observable<Api<Request>> {
     const url = `${this.apiUrl}delete/${id}`;
-    return this.http.delete<Request>(url).pipe(
+    return this.http.delete<Api<Request>>(url).pipe(
       tap(),
-      catchError(this.handleError<Request>('delete')),
+      catchError(this.handleError<Api<Request>>('delete')),
     );
   }
 }

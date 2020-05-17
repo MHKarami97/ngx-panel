@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Title } from '@angular/platform-browser';
-import { CategoryService } from './../../../services/category.service';
 import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
+import { PriceService } from '../../../services/price.service';
 
 @Component({
   selector: 'ngx-price-table',
@@ -40,12 +40,12 @@ export class PriceTableComponent implements OnInit {
         type: 'number',
         editable: false,
       },
-      name: {
-        title: 'نام',
+      companyInfoCompanyName: {
+        title: 'نام شرکت',
         type: 'string',
       },
-      parentCategoryName: {
-        title: 'دسته مادر',
+      file: {
+        title: 'فایل',
         type: 'string',
       },
     },
@@ -54,18 +54,18 @@ export class PriceTableComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private title: Title,
-    private dataService: CategoryService, private toastrService: NbToastrService) {
+    private dataService: PriceService, private toastrService: NbToastrService) {
   }
 
   ngOnInit(): void {
-    this.title.setTitle('پنل مدیریت' + ' | ' + 'لیست ' + 'دسته بندی ها');
+    this.title.setTitle('پنل مدیریت' + ' | ' + 'لیست ' + 'قیمت ها');
 
     this.loading = true;
     this.dataService.get().subscribe(
       results => {
         this.source.load(results.data.map(function (val) {
-          if (val.parentCategoryName === null)
-            val.parentCategoryName = 'ندارد';
+          if (val.file !== null)
+            val.file = 'http://5.63.13.16/uploads/' + val.file;
 
           return val;
         }));
@@ -107,11 +107,7 @@ export class PriceTableComponent implements OnInit {
     } else {
       this.source.setFilter([
         {
-          field: 'name',
-          search: query,
-        },
-        {
-          field: 'parentCategoryName',
+          field: 'companyInfoCompanyName',
           search: query,
         },
       ], false, true);

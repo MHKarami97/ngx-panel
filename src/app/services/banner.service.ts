@@ -31,34 +31,34 @@ export class BannerService {
       ));
   }
 
-  getById(id: number): Observable<Banner> {
+  getById(id: number): Observable<Api<Banner>> {
     const url = `${this.apiUrl}get/${id}`;
-    return this.http.get<Banner>(url).pipe(
+    return this.http.get<Api<Banner>>(url).pipe(
       tap(),
-      catchError(this.handleError<Banner>(`getById id=${id}`)),
+      catchError(this.handleError<Api<Banner>>(`getById id=${id}`)),
     );
   }
 
-  create(product: BannerCreate): Observable<Api<BannerCreate>> {
-    return this.http.post<Api<BannerCreate>>(this.apiUrl + 'create', product).pipe(
+  create(product: BannerCreate): Observable<Api<Banner>> {
+    return this.http.post<Api<Banner>>(this.apiUrl + 'create', product).pipe(
       tap(),
-      catchError(this.handleError('get', new Api<BannerCreate>()),
+      catchError(this.handleError('get', new Api<Banner>()),
     ));
   }
 
-  update(id: number, product: BannerCreate): Observable<any> {
+  update(id: number, product: BannerCreate): Observable<Api<Banner>> {
     const url = `${this.apiUrl}update/${id}`;
-    return this.http.put(url, product).pipe(
+    return this.http.put<Api<Banner>>(url, product).pipe(
       tap(),
-      catchError(this.handleError<BannerCreate>('update')),
+      catchError(this.handleError<Api<Banner>>('update')),
     );
   }
 
-  delete(id: any): Observable<Banner> {
+  delete(id: any): Observable<Api<Banner>> {
     const url = `${this.apiUrl}delete/${id}`;
-    return this.http.delete<Banner>(url).pipe(
+    return this.http.delete<Api<Banner>>(url).pipe(
       tap(),
-      catchError(this.handleError<Banner>('delete')),
+      catchError(this.handleError<Api<Banner>>('delete')),
     );
   }
 }

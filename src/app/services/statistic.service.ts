@@ -10,7 +10,7 @@ import { Statistic } from '../models/more/Statistic.module';
 })
 export class StatisticService {
 
-  apiUrl = 'statistic/';
+  apiUrl = 'statistic';
   error = new Subject<string>();
 
   constructor(private http: HttpClient) { }
@@ -23,11 +23,11 @@ export class StatisticService {
     };
   }
 
-  get(): Observable<Api<Statistic[]>> {
-    return this.http.get<Api<Statistic[]>>(this.apiUrl + 'get')
+  get(): Observable<Api<Statistic>> {
+    return this.http.get<Api<Statistic>>(this.apiUrl)
       .pipe(
         tap(),
-        catchError(this.handleError('get', new Api<Statistic[]>()),
+        catchError(this.handleError('get', new Api<Statistic>()),
       ));
   }
 }

@@ -31,34 +31,34 @@ export class CategoryService {
       ));
   }
 
-  getById(id: number): Observable<Category> {
+  getById(id: number): Observable<Api<Category>> {
     const url = `${this.apiUrl}get/${id}`;
-    return this.http.get<Category>(url).pipe(
+    return this.http.get<Api<Category>>(url).pipe(
       tap(),
-      catchError(this.handleError<Category>(`getById id=${id}`)),
+      catchError(this.handleError<Api<Category>>(`getById id=${id}`)),
     );
   }
 
-  create(product: CategoryCreate): Observable<Api<CategoryCreate>> {
-    return this.http.post<Api<CategoryCreate>>(this.apiUrl + 'create', product).pipe(
+  create(product: CategoryCreate): Observable<Api<Category>> {
+    return this.http.post<Api<Category>>(this.apiUrl + 'create', product).pipe(
       tap(),
       catchError(this.handleError('get', new Api<Category>()),
     ));
   }
 
-  update(id: number, product: CategoryCreate): Observable<any> {
+  update(id: number, product: CategoryCreate): Observable<Api<Category>> {
     const url = `${this.apiUrl}update/${id}`;
-    return this.http.put(url, product).pipe(
+    return this.http.put<Api<Category>>(url, product).pipe(
       tap(),
-      catchError(this.handleError<CategoryCreate>('update')),
+      catchError(this.handleError<Api<Category>>('update')),
     );
   }
 
-  delete(id: any): Observable<Category> {
+  delete(id: any): Observable<Api<Category>> {
     const url = `${this.apiUrl}delete/${id}`;
-    return this.http.delete<Category>(url).pipe(
+    return this.http.delete<Api<Category>>(url).pipe(
       tap(),
-      catchError(this.handleError<Category>('delete')),
+      catchError(this.handleError<Api<Category>>('delete')),
     );
   }
 

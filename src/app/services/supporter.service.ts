@@ -31,34 +31,34 @@ export class SupporterService {
       ));
   }
 
-  getById(id: number): Observable<Supporter> {
+  getById(id: number): Observable<Api<Supporter>> {
     const url = `${this.apiUrl}get/${id}`;
-    return this.http.get<Supporter>(url).pipe(
+    return this.http.get<Api<Supporter>>(url).pipe(
       tap(),
-      catchError(this.handleError<Supporter>(`getById id=${id}`)),
+      catchError(this.handleError<Api<Supporter>>(`getById id=${id}`)),
     );
   }
 
-  create(product: SupporterCreate): Observable<Api<SupporterCreate>> {
-    return this.http.post<Api<SupporterCreate>>(this.apiUrl + 'create', product).pipe(
+  create(product: SupporterCreate): Observable<Api<Supporter>> {
+    return this.http.post<Api<Supporter>>(this.apiUrl + 'create', product).pipe(
       tap(),
-      catchError(this.handleError('get', new Api<SupporterCreate>()),
+      catchError(this.handleError('get', new Api<Supporter>()),
     ));
   }
 
-  update(id: number, product: SupporterCreate): Observable<any> {
+  update(id: number, product: SupporterCreate): Observable<Api<Supporter>> {
     const url = `${this.apiUrl}update/${id}`;
-    return this.http.put(url, product).pipe(
+    return this.http.put<Api<Supporter>>(url, product).pipe(
       tap(),
-      catchError(this.handleError<SupporterCreate>('update')),
+      catchError(this.handleError<Api<Supporter>>('update')),
     );
   }
 
-  delete(id: any): Observable<Supporter> {
+  delete(id: any): Observable<Api<Supporter>> {
     const url = `${this.apiUrl}delete/${id}`;
-    return this.http.delete<Supporter>(url).pipe(
+    return this.http.delete<Api<Supporter>>(url).pipe(
       tap(),
-      catchError(this.handleError<Supporter>('delete')),
+      catchError(this.handleError<Api<Supporter>>('delete')),
     );
   }
 }

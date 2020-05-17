@@ -16,11 +16,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'لیست کاربران',
-        link: '/pages/tables/smart-table',
+        link: '/pages/tables/user-table',
       },
       {
         title: 'مدیریت کاربران',
-        link: '/pages/tables/smart-table',
+        link: '/pages/tables/user-table',
       },
       {
         title: 'افزودن کاربر',
@@ -82,11 +82,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'لیست قطعه ها',
-        link: '/pages/tables/smart-table',
+        link: '/pages/tables/piece-table',
       },
       {
         title: 'مدیریت قطعه ها',
-        link: '/pages/tables/smart-table',
+        link: '/pages/tables/piece-table',
       },
       {
         title: 'افزودن قطعه',
@@ -104,11 +104,55 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'لیست درخواست ها',
-        link: '/pages/tables/smart-table',
+        link: '/pages/tables/request-table',
       },
       {
         title: 'مدیریت درخواست ها',
-        link: '/pages/tables/smart-table',
+        link: '/pages/tables/request-table',
+      },
+    ],
+  },
+  {
+    title: 'لیست قیمت ها',
+    group: true,
+  },
+  {
+    title: 'مدیریت قیمت ها',
+    icon: 'award-outline',
+    children: [
+      {
+        title: 'لیست قیمت ها',
+        link: '/pages/tables/pirce-table',
+      },
+      {
+        title: 'مدیریت قیمت ها',
+        link: '/pages/tables/price-table',
+      },
+      {
+        title: 'افزودن قیمت',
+        link: '/pages/forms/layouts',
+      },
+    ],
+  },
+  {
+    title: 'استاندارد ها',
+    group: true,
+  },
+  {
+    title: 'مدیریت استاندارد ها',
+    icon: 'award-outline',
+    children: [
+      {
+        title: 'لیست استاندارد ها',
+        link: '/pages/tables/standard-table',
+      },
+      {
+        title: 'مدیریت استاندارد ها',
+        link: '/pages/tables/standard-table',
+      },
+      {
+        title: 'افزودن استاندارد',
+        link: '/pages/forms/layouts',
       },
     ],
   },
@@ -121,32 +165,16 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'folder-outline',
     children: [
       {
-        title: 'مدیریت استاندارد ها',
-        link: '/pages/tables/smart-table',
-      },
-      {
-        title: 'مدیریت لیست قیمت ها',
-        link: '/pages/tables/smart-table',
-      },
-      {
         title: 'مدیریت تولیدکننده ها',
-        link: '/pages/tables/smart-table',
+        link: '/pages/tables/producer-table',
       },
       {
         title: 'مدیریت شرکت ها',
-        link: '/pages/tables/smart-table',
+        link: '/pages/tables/company-table',
       },
       {
         title: 'مدیریت فروشندگان',
-        link: '/pages/tables/smart-table',
-      },
-      {
-        title: 'افزودن استاندارد',
-        link: '/pages/forms/layouts',
-      },
-      {
-        title: 'افزودن لیست قیمت',
-        link: '/pages/forms/layouts',
+        link: '/pages/tables/seller-table',
       },
       {
         title: 'افزودن تولیدکننده',

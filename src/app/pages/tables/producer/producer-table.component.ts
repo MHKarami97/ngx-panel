@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Title } from '@angular/platform-browser';
-import { CategoryService } from './../../../services/category.service';
 import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
+import { ProducerService } from '../../../services/producer.service';
 
 @Component({
   selector: 'ngx-producer-table',
@@ -40,12 +40,12 @@ export class ProducerTableComponent implements OnInit {
         type: 'number',
         editable: false,
       },
-      name: {
-        title: 'نام',
+      companyName: {
+        title: 'نام شرکت',
         type: 'string',
       },
-      parentCategoryName: {
-        title: 'دسته مادر',
+      stateName: {
+        title: 'شهر',
         type: 'string',
       },
     },
@@ -54,18 +54,16 @@ export class ProducerTableComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private title: Title,
-    private dataService: CategoryService, private toastrService: NbToastrService) {
+    private dataService: ProducerService, private toastrService: NbToastrService) {
   }
 
   ngOnInit(): void {
-    this.title.setTitle('پنل مدیریت' + ' | ' + 'لیست ' + 'دسته بندی ها');
+    this.title.setTitle('پنل مدیریت' + ' | ' + 'لیست ' + 'تولید کننده ها');
 
     this.loading = true;
     this.dataService.get().subscribe(
       results => {
         this.source.load(results.data.map(function (val) {
-          if (val.parentCategoryName === null)
-            val.parentCategoryName = 'ندارد';
 
           return val;
         }));
@@ -107,11 +105,11 @@ export class ProducerTableComponent implements OnInit {
     } else {
       this.source.setFilter([
         {
-          field: 'name',
+          field: 'companyName',
           search: query,
         },
         {
-          field: 'parentCategoryName',
+          field: 'stateName',
           search: query,
         },
       ], false, true);

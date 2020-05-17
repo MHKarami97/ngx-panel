@@ -5,4 +5,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./echarts.component.scss'],
   templateUrl: './echarts.component.html',
 })
-export class EchartsComponent {}
+export class EchartsComponent {
+}

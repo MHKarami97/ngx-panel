@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Title } from '@angular/platform-browser';
-import { CategoryService } from './../../../services/category.service';
 import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
+import { RequestService } from '../../../services/request.service';
 
 @Component({
   selector: 'ngx-request-table',
@@ -44,8 +44,16 @@ export class RequestTableComponent implements OnInit {
         title: 'نام',
         type: 'string',
       },
-      parentCategoryName: {
-        title: 'دسته مادر',
+      phone: {
+        title: 'موبایل',
+        type: 'string',
+      },
+      time: {
+        title: 'زمان',
+        type: 'string',
+      },
+      witch: {
+        title: 'کدام',
         type: 'string',
       },
     },
@@ -54,19 +62,16 @@ export class RequestTableComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private title: Title,
-    private dataService: CategoryService, private toastrService: NbToastrService) {
+    private dataService: RequestService, private toastrService: NbToastrService) {
   }
 
   ngOnInit(): void {
-    this.title.setTitle('پنل مدیریت' + ' | ' + 'لیست ' + 'دسته بندی ها');
+    this.title.setTitle('پنل مدیریت' + ' | ' + 'لیست ' + 'درخواست ها');
 
     this.loading = true;
-    this.dataService.get().subscribe(
+    this.dataService.getCustom(1).subscribe(
       results => {
         this.source.load(results.data.map(function (val) {
-          if (val.parentCategoryName === null)
-            val.parentCategoryName = 'ندارد';
-
           return val;
         }));
       },
@@ -111,7 +116,7 @@ export class RequestTableComponent implements OnInit {
           search: query,
         },
         {
-          field: 'parentCategoryName',
+          field: 'phone',
           search: query,
         },
       ], false, true);

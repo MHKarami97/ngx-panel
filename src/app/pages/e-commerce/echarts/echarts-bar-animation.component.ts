@@ -1,5 +1,7 @@
-import { AfterViewInit, Component, OnDestroy } from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { NbThemeService, NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
+import { Statistic } from '../../../models/more/statistic.module';
+import { StatisticService } from '../../../services/statistic.service';
 
 @Component({
   selector: 'ngx-echarts-bar-animation',
@@ -7,11 +9,29 @@ import { NbThemeService } from '@nebular/theme';
     <div echarts [options]="options" class="echart"></div>
   `,
 })
-export class EchartsBarAnimationComponent implements AfterViewInit, OnDestroy {
+export class EchartsBarAnimationComponent implements AfterViewInit, OnDestroy, OnInit {
   options: any = {};
   themeSubscription: any;
+  loading = false;
+  error = null;
+  data: Statistic;
 
-  constructor(private theme: NbThemeService) {
+  constructor(private theme: NbThemeService,
+     private dataService: StatisticService, private toastrService: NbToastrService) {
+  }
+
+  ngOnInit(): void {
+    this.loading = true;
+    this.dataService.get().subscribe(
+      results => {
+        this.data === results.data;
+      },
+      error => {
+        this.error = error.message;
+        this.onError();
+      },
+    );
+    this.loading = false;
   }
 
   ngAfterViewInit() {
@@ -82,16 +102,36 @@ export class EchartsBarAnimationComponent implements AfterViewInit, OnDestroy {
         animationDelayUpdate: idx => idx * 5,
       };
 
-      for (let i = 0; i < 6; i++) {
-        xAxisData.push('قسمت ' + i);
-        const min = Math.ceil(5);
-        const max = Math.floor(100);
-        data1.push(Math.floor(Math.random() * (max - min + 1)) + min);
-      }
+      xAxisData.push('دسته بندی ها');
+      xAxisData.push('استاندارد ها');
+      xAxisData.push('درخواست ها');
+      xAxisData.push('قیمت ها');
+      xAxisData.push('کاربر ها');
+
+      data1.push(this.data.categories);
+      data1.push(this.data.standards);
+      data1.push(this.data.requests);
+      data1.push(this.data.prices);
+      data1.push(this.data.users);
     });
   }
 
   ngOnDestroy(): void {
     this.themeSubscription.unsubscribe();
+  }
+
+  onError() {
+    const config = {
+      destroyByClick: true,
+      duration: 3000,
+      hasIcon: true,
+      position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
+      preventDuplicates: true,
+    };
+
+    this.toastrService.danger(
+      this.error,
+      'خطا',
+      config);
   }
 }
