@@ -3,6 +3,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { Title } from '@angular/platform-browser';
 import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
 import { PriceService } from '../../../services/price.service';
+import { Setting } from '../../../setting';
 
 @Component({
   selector: 'ngx-price-table',
@@ -46,7 +47,7 @@ export class PriceTableComponent implements OnInit {
       },
       file: {
         title: 'فایل',
-        type: 'string',
+        type: 'html',
       },
     },
   };
@@ -65,7 +66,7 @@ export class PriceTableComponent implements OnInit {
       results => {
         this.source.load(results.data.map(function (val) {
           if (val.file !== null)
-            val.file = 'http://5.63.13.16/uploads/' + val.file;
+            val.file = `<a href="${Setting.baseUrl}uploads/${val.file}">link</a>`;
 
           return val;
         }));

@@ -122,7 +122,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'لیست قیمت ها',
-        link: '/pages/tables/pirce-table',
+        link: '/pages/tables/price-table',
       },
       {
         title: 'مدیریت قیمت ها',
