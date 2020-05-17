@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NbThemeService, NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
 import { Statistic } from '../../../models/more/statistic.module';
 import { StatisticService } from '../../../services/statistic.service';
@@ -9,12 +9,11 @@ import { StatisticService } from '../../../services/statistic.service';
     <div echarts [options]="options" class="echart"></div>
   `,
 })
-export class EchartsBarAnimationComponent implements AfterViewInit, OnDestroy, OnInit {
+export class EchartsBarAnimationComponent implements OnDestroy, OnInit {
   options: any = {};
   themeSubscription: any;
   loading = false;
   error = null;
-  data: Statistic;
 
   constructor(private theme: NbThemeService,
      private dataService: StatisticService, private toastrService: NbToastrService) {
@@ -24,7 +23,7 @@ export class EchartsBarAnimationComponent implements AfterViewInit, OnDestroy, O
     this.loading = true;
     this.dataService.get().subscribe(
       results => {
-        this.data === results.data;
+        this.renderData(results.data);
       },
       error => {
         this.error = error.message;
@@ -34,7 +33,7 @@ export class EchartsBarAnimationComponent implements AfterViewInit, OnDestroy, O
     this.loading = false;
   }
 
-  ngAfterViewInit() {
+  renderData(data: Statistic) {
     this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
       const xAxisData = [];
       const data1 = [];
@@ -108,11 +107,11 @@ export class EchartsBarAnimationComponent implements AfterViewInit, OnDestroy, O
       xAxisData.push('قیمت ها');
       xAxisData.push('کاربر ها');
 
-      data1.push(this.data.categories);
-      data1.push(this.data.standards);
-      data1.push(this.data.requests);
-      data1.push(this.data.prices);
-      data1.push(this.data.users);
+      data1.push(data.categories);
+      data1.push(data.standards);
+      data1.push(data.requests);
+      data1.push(data.prices);
+      data1.push(data.users);
     });
   }
 
