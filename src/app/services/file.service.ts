@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Api } from '../models/base/api.model';
-import { Banner } from '../models/more/banner.module';
 
 @Injectable({
   providedIn: 'root',
@@ -23,10 +22,10 @@ export class FileService {
     };
   }
 
-  create(): Observable<Api<Banner>> {
-    return this.http.post<Api<Banner>>(this.apiUrl + 'create', '').pipe(
+  create(data: FormData): Observable<Api<string>> {
+    return this.http.post<Api<string>>(this.apiUrl + 'create', data).pipe(
       tap(),
-      catchError(this.handleError('get', new Api<Banner>()),
+      catchError(this.handleError('get', new Api<string>()),
       ));
   }
 }
