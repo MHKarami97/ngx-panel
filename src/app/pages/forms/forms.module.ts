@@ -18,8 +18,15 @@ import {
 import { ThemeModule } from '../../@theme/theme.module';
 import { FormsRoutingModule } from './forms-routing.module';
 import { FormsComponent } from './forms.component';
-import { FormLayoutsComponent } from './form-layouts/form-layouts.component';
 import { FormsModule as ngFormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddCompanyComponent } from './add-company/add-company.component';
+import { AddPieceComponent } from './add-piece/add-piece.component';
+import { AddPriceComponent } from './add-price/add-price.component';
+import { AddProducerComponent } from './add-producer/add-producer.component';
+import { AddSellerComponent } from './add-seller/add-seller.component';
+import { AddSupporterComponent } from './add-supporter/add-supporter.component';
+import { AddStandardComponent } from './add-standard/add-standard.component';
+import { AddUserComponent } from './add-user/add-user.component';
 
 @NgModule({
   imports: [
@@ -42,9 +49,16 @@ import { FormsModule as ngFormsModule, ReactiveFormsModule } from '@angular/form
   ],
   declarations: [
     FormsComponent,
-    FormLayoutsComponent,
     AddCategoryComponent,
     AddBannerComponent,
+    AddCompanyComponent,
+    AddPieceComponent,
+    AddPriceComponent,
+    AddProducerComponent,
+    AddSellerComponent,
+    AddStandardComponent,
+    AddSupporterComponent,
+    AddUserComponent,
   ],
 })
 export class FormsModule { }

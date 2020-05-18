@@ -39,10 +39,10 @@ export class ProducerService {
     );
   }
 
-  create(product: ProducerCreate): Observable<Api<ProducerCreate>> {
-    return this.http.post<Api<ProducerCreate>>(this.apiUrl + 'create', product).pipe(
+  create(product: ProducerCreate): Observable<Api<Producer>> {
+    return this.http.post<Api<Producer>>(this.apiUrl + 'create', product).pipe(
       tap(),
-      catchError(this.handleError('get', new Api<ProducerCreate>()),
+      catchError(this.handleError('get', new Api<Producer>()),
     ));
   }
 
