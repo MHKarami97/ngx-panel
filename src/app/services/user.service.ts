@@ -10,7 +10,7 @@ import { Api } from '../models/base/api.model';
 })
 export class UserService {
 
-  apiUrl= 'banner/';
+  apiUrl = 'banner/';
   error = new Subject<string>();
 
   constructor(private http: HttpClient) { }
@@ -28,7 +28,7 @@ export class UserService {
       .pipe(
         tap(),
         catchError(this.handleError('get', new Api<User[]>()),
-      ));
+        ));
   }
 
   getById(id: number): Observable<Api<User>> {
@@ -43,7 +43,7 @@ export class UserService {
     return this.http.post<Api<User>>(this.apiUrl + 'create', product).pipe(
       tap(),
       catchError(this.handleError('get', new Api<User>()),
-    ));
+      ));
   }
 
   update(id: number, product: UserCreate): Observable<Api<User>> {

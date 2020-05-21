@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Title } from '@angular/platform-browser';
 import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
-import { PriceService } from '../../../services/price.service';
 import { PieceService } from '../../../services/piece.service';
 
 @Component({

@@ -10,7 +10,7 @@ import { Api } from '../models/base/api.model';
 })
 export class CategoryService {
 
-  apiUrl= 'pieceCategory/';
+  apiUrl = 'pieceCategory/';
   error = new Subject<string>();
 
   constructor(private http: HttpClient) { }
@@ -28,7 +28,7 @@ export class CategoryService {
       .pipe(
         tap(),
         catchError(this.handleError('get', new Api<Category[]>()),
-      ));
+        ));
   }
 
   getById(id: number): Observable<Api<Category>> {
@@ -43,7 +43,7 @@ export class CategoryService {
     return this.http.post<Api<Category>>(this.apiUrl + 'create', product).pipe(
       tap(),
       catchError(this.handleError('get', new Api<Category>()),
-    ));
+      ));
   }
 
   update(id: number, product: CategoryCreate): Observable<Api<Category>> {
@@ -69,6 +69,6 @@ export class CategoryService {
       .pipe(
         tap(),
         catchError(this.handleError('get', new Api<Category[]>()),
-      ));
+        ));
   }
 }

@@ -10,7 +10,7 @@ import { Company, CompanyCreate } from '../models/client/company.module';
 })
 export class CompanyService {
 
-  apiUrl= 'company/';
+  apiUrl = 'company/';
   error = new Subject<string>();
 
   constructor(private http: HttpClient) { }
@@ -28,7 +28,7 @@ export class CompanyService {
       .pipe(
         tap(),
         catchError(this.handleError('get', new Api<Company[]>()),
-      ));
+        ));
   }
 
   getById(id: number): Observable<Api<Company>> {
@@ -43,7 +43,7 @@ export class CompanyService {
     return this.http.post<Api<Company>>(this.apiUrl + 'create', product).pipe(
       tap(),
       catchError(this.handleError('get', new Api<Company>()),
-    ));
+      ));
   }
 
   update(id: number, product: CompanyCreate): Observable<Api<Company>> {

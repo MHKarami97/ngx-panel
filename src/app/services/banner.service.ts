@@ -10,7 +10,7 @@ import { Banner, BannerCreate } from '../models/more/banner.module';
 })
 export class BannerService {
 
-  apiUrl= 'banner/';
+  apiUrl = 'banner/';
   error = new Subject<string>();
 
   constructor(private http: HttpClient) { }
@@ -28,7 +28,7 @@ export class BannerService {
       .pipe(
         tap(),
         catchError(this.handleError('get', new Api<Banner[]>()),
-      ));
+        ));
   }
 
   getById(id: number): Observable<Api<Banner>> {
@@ -43,7 +43,7 @@ export class BannerService {
     return this.http.post<Api<Banner>>(this.apiUrl + 'create', product).pipe(
       tap(),
       catchError(this.handleError('get', new Api<Banner>()),
-    ));
+      ));
   }
 
   update(id: number, product: BannerCreate): Observable<Api<Banner>> {
