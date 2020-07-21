@@ -94,7 +94,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'مدیریت قیمت ها',
-    icon: 'award-outline',
+    icon: 'shield-outline',
     children: [
       {
         title: 'لیست قیمت ها',
@@ -112,7 +112,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'مدیریت استاندارد ها',
-    icon: 'award-outline',
+    icon: 'play-circle-outline',
     children: [
       {
         title: 'لیست استاندارد ها',
