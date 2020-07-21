@@ -7,10 +7,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/dashboard',
   },
   {
-    title: 'کاربران',
-    group: true,
-  },
-  {
     title: 'مدیریت کاربران',
     icon: 'people-outline',
     children: [
@@ -27,10 +23,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/forms/layouts',
       },
     ],
-  },
-  {
-    title: 'دسته بندی ها',
-    group: true,
   },
   {
     title: 'مدیریت دسته ها',
@@ -51,10 +43,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
-    title: 'بنرها',
-    group: true,
-  },
-  {
     title: 'مدیریت بنر ها',
     icon: 'image-outline',
     children: [
@@ -71,10 +59,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/forms/add-banner',
       },
     ],
-  },
-  {
-    title: 'قطعه ها',
-    group: true,
   },
   {
     title: 'مدیریت قطعه ها',
@@ -95,10 +79,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
-    title: 'درخواست ها',
-    group: true,
-  },
-  {
     title: 'مدیریت درخواست ها',
     icon: 'award-outline',
     children: [
@@ -111,10 +91,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/tables/request-table',
       },
     ],
-  },
-  {
-    title: 'لیست قیمت ها',
-    group: true,
   },
   {
     title: 'مدیریت قیمت ها',
@@ -135,10 +111,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
-    title: 'استاندارد ها',
-    group: true,
-  },
-  {
     title: 'مدیریت استاندارد ها',
     icon: 'award-outline',
     children: [
@@ -155,10 +127,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/forms/layouts',
       },
     ],
-  },
-  {
-    title: 'کلاینت ها',
-    group: true,
   },
   {
     title: 'مدیریت کلاینت ها',
@@ -178,15 +146,15 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'افزودن تولیدکننده',
-        link: '/pages/forms/layouts',
+        link: '/pages/forms/add-producer',
       },
       {
         title: 'افزودن شرکت',
-        link: '/pages/forms/layouts',
+        link: '/pages/forms/add-company',
       },
       {
         title: 'افزودن فروشنده',
-        link: '/pages/forms/layouts',
+        link: '/pages/forms/add-seller',
       },
     ],
   },

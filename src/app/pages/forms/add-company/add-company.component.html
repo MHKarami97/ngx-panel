@@ -7,18 +7,17 @@
           <div class="row">
             <div class="col-sm-6">
               <div class="form-group">
-                <label for="name" class="label">نام دسته</label>
-                <input type="text" nbInput fullWidth [(ngModel)]="input.name" name="name" id="name"
-                  pattern="^[\u0600-\u06FF\s]+$" #category="ngModel"
-                  [status]="category.dirty ? (category.invalid ? 'danger' : 'success') : ''"
-                  [attr.aria-invalid]="category.invalid && category.touched ? true : null" placeholder="نام دسته"
-                  autocomplete="off"
-                  required>
-                <ng-container *ngIf="category.invalid && category.touched">
-                  <p class="caption status-danger" *ngIf="category.errors?.required">
+                <label for="name" class="label">نام شرکت</label>
+                <input type="text" nbInput fullWidth [(ngModel)]="input.companyName" name="companyName" id="companyName"
+                  #companyName="ngModel"
+                  [status]="companyName.dirty ? (companyName.invalid ? 'danger' : 'success') : ''"
+                  [attr.aria-invalid]="companyName.invalid && companyName.touched ? true : null" placeholder="نام شرکت"
+                  autocomplete="off" required>
+                <ng-container *ngIf="companyName.invalid && companyName.touched">
+                  <p class="caption status-danger" *ngIf="companyName.errors?.required">
                     وارد کردن این آیتم اجباری است
                   </p>
-                  <p class="caption status-danger" *ngIf="category.errors?.pattern">
+                  <p class="caption status-danger" *ngIf="companyName.errors?.pattern">
                     مقدار وارد شده نامعتبر است (فقط حروف فارسی مورد قبول است)
                   </p>
                 </ng-container>
@@ -26,21 +25,17 @@
             </div>
             <div class="col-sm-6">
               <div class="form-group">
-                <label for="parentCategoryId" class="label">دسته مادر</label>
-                <nb-select selected="0" fullWidth [(ngModel)]="input.parentCategoryId" name="parentCategoryId"
-                  id="parentCategoryId" #parent="ngModel"
-                  [attr.aria-invalid]="parent.invalid && parent.touched ? true : null" placeholder="انتخاب دسته مادر">
-                  <nb-option value="0" selected disabled>انتخاب دسته مادر</nb-option>
-                  <nb-option *ngFor="let cat of mainCats" [value]="cat.id">
-                    {{ cat.name }}
-                  </nb-option>
-                </nb-select>
-                <ng-container *ngIf="parent.invalid && parent.touched">
-                  <p class="caption status-danger" *ngIf="parent.errors?.required">
+                <label for="name" class="label">شماره تماس</label>
+                <input type="tel" nbInput fullWidth [(ngModel)]="input.phone" name="phone" id="phone" #phone="ngModel"
+                  [status]="phone.dirty ? (phone.invalid ? 'danger' : 'success') : ''"
+                  [attr.aria-invalid]="phone.invalid && phone.touched ? true : null" placeholder="شماره تماس"
+                  autocomplete="off" required>
+                <ng-container *ngIf="phone.invalid && phone.touched">
+                  <p class="caption status-danger" *ngIf="phone.errors?.required">
                     وارد کردن این آیتم اجباری است
                   </p>
-                  <p class="caption status-danger" *ngIf="parent.errors?.pattern">
-                    مقدار وارد شده نامعتبر است
+                  <p class="caption status-danger" *ngIf="phone.errors?.pattern">
+                    مقدار وارد شده نامعتبر است (فقط حروف فارسی مورد قبول است)
                   </p>
                 </ng-container>
               </div>

@@ -19,7 +19,7 @@ export class AddSupporterComponent implements OnInit {
 
   input: SupporterCreate = {
     id: 0,
-    companyName: '', phone: '', state: 0, pieces: null,
+    companyName: '', phone: '', state: 0, pieces: null
   };
   users: User[] = [];
   result: Api<Supporter>;

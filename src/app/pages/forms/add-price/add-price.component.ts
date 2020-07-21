@@ -5,6 +5,8 @@ import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
 import { Api } from '../../../models/base/api.model';
 import { Price, PriceCreate } from '../../../models/price/Price.module';
 import { PriceService } from '../../../services/price.service';
+import { CompanyService } from '../../../services/company.service';
+import { Company } from '../../../models/client/company.module';
 
 @Component({
   selector: 'ngx-add-price',
@@ -16,18 +18,38 @@ export class AddPriceComponent implements OnInit {
   loading = false;
   error = null;
 
+  public uploadedFiles: Array<File> = [];
+
   input: PriceCreate = { id: 0, file: '', companyInfoId: 0 };
   result: Api<Price>;
   submitted: boolean = false;
+  companies: Company[] = [];
   file: string;
 
   constructor(private title: Title,
     private dataService: PriceService, private fileService: FileService,
+    private companyService: CompanyService,
     private toastrService: NbToastrService) {
   }
 
   ngOnInit(): void {
     this.title.setTitle('پنل مدیریت' + ' | ' + 'افزودن ' + 'قیمت');
+
+    this.loadData();
+  }
+
+  loadData() {
+    this.loading = true;
+    this.companyService.get().subscribe(
+      results => {
+        this.companies = results.data;
+      },
+      error => {
+        this.error = error.message;
+        this.onError();
+      },
+    );
+    this.loading = false;
   }
 
   onError() {
