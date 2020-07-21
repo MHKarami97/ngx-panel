@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./footer.component.scss'],
   template: `
     <span class="created-by">
-      طراحی شده با ♥ توسط <b><a href="https://itarfand.com" target="_blank">mhkarami97</a></b>
+      طراحی شده با ♥
     </span>
     <div class="socials">
       <a href="https://github.com/mhkarami97" target="_blank" class="ion ion-social-github"></a>
