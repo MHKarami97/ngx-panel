@@ -32,6 +32,13 @@ export class HttpInterceptorService implements HttpInterceptor {
       req = this.addAuthenticationToken(req);
     }
 
+    if (req.url.includes('banner/create') || req.url.includes('standard/create') ||
+      req.url.includes('price/create')) {
+    }
+    else {
+      req = this.addJsonHeader(req);
+    }
+
     const config = {
       destroyByClick: true,
       duration: 3000,
@@ -40,7 +47,6 @@ export class HttpInterceptorService implements HttpInterceptor {
       preventDuplicates: true,
     };
 
-    req = this.addJsonHeader(req);
     // req = this.addAuthenticationToken(req);
 
     return next.handle(req).do((event: HttpEvent<any>) => {

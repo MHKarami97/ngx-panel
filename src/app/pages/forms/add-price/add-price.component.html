@@ -3,7 +3,7 @@
     <nb-card accent="info" [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerSize="large">
       <nb-card-header>افزودن</nb-card-header>
       <nb-card-body>
-        <form (ngSubmit)="add()" #form="ngForm" aria-labelledby="title">
+        <form (ngSubmit)="add()" #form="ngForm" aria-labelledby="title" enctype="multipart/form-data">
           <div class="row">
             <div class="col-sm-12">
               <div class="form-group">
