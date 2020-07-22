@@ -39,7 +39,7 @@ export class BannerService {
     );
   }
 
-  create(product: BannerCreate): Observable<Api<Banner>> {
+  create(product: FormData): Observable<Api<Banner>> {
     return this.http.post<Api<Banner>>(this.apiUrl + 'create', product).pipe(
       tap(),
       catchError(this.handleError('get', new Api<Banner>()),

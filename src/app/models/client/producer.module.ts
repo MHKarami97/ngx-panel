@@ -19,10 +19,7 @@ export class ProducerSingle extends Base {
 export class ProducerCreate extends Base {
   companyName: string;
   address: string;
-  location: string;
   phone: string;
-  userPhoneNumber: string;
-  userFullName: string;
-  state: number;
-  pieces: Piece[];
+  stateId: number;
+  userId: number;
 }

@@ -31,7 +31,7 @@
                   [attr.aria-invalid]="userId.invalid && userId.touched ? true : null" required>
                   <nb-option value="0" selected disabled>انتخاب کاربر</nb-option>
                   <nb-option *ngFor="let user of users" [value]="user.id">
-                    {{ user.FullName }}
+                    {{ user.fullName }}
                   </nb-option>
                 </nb-select>
                 <ng-container *ngIf="userId.invalid && userId.touched">

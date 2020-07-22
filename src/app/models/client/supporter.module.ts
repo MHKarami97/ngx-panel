@@ -6,10 +6,3 @@ export class Supporter extends Base {
   phone: string;
   pieces: Piece[];
 }
-
-export class SupporterCreate extends Base {
-  companyName: string;
-  phone: string;
-  state: number;
-  pieces: Piece[];
-}

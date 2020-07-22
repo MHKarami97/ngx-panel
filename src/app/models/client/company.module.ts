@@ -16,9 +16,7 @@ export class CompanySingle extends Base {
 export class CompanyCreate extends Base {
   companyName: string;
   address: string;
-  location: string;
   phone: string;
-  userPhoneNumber: string;
-  userFullName: string;
-  state: number;
+  stateId: number;
+  userId: number;
 }

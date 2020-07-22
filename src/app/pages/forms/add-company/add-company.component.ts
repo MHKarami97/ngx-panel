@@ -6,6 +6,8 @@ import { UserService } from '../../../services/user.service';
 import { CompanyService } from '../../../services/company.service';
 import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
 import { CompanyCreate, Company } from '../../../models/client/company.module';
+import { State } from '../../../models/state/state.module';
+import { StateService } from '../../../services/state.service';
 
 @Component({
   selector: 'ngx-add-company',
@@ -17,14 +19,17 @@ export class AddCompanyComponent implements OnInit {
   loading = false;
   error = null;
 
-  input: CompanyCreate = { id: 0, address: '',
-   location: '', companyName: '', phone: '', userFullName: '', userPhoneNumber: '', state: 0 };
+  input: CompanyCreate = {
+    id: 0, address: '', companyName: '', phone: '', stateId: 0, userId: 0
+  };
   users: User[] = [];
+  states: State[] = [];
   result: Api<Company>;
   submitted: boolean = false;
 
   constructor(private title: Title,
-    private dataService: CompanyService, private userDataService: UserService, private toastrService: NbToastrService) {
+    private dataService: CompanyService, private userDataService: UserService,
+    private stateDataService: StateService, private toastrService: NbToastrService) {
   }
 
   ngOnInit(): void {
@@ -40,7 +45,17 @@ export class AddCompanyComponent implements OnInit {
         this.onError();
       },
     );
-    this.loading = false;
+
+    this.stateDataService.get().subscribe(
+      results => {
+        this.states = results.data;
+        this.loading = false;
+      },
+      error => {
+        this.error = error.message;
+        this.onError();
+      },
+    );
   }
 
   onError() {
