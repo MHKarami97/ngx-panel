@@ -1,4 +1,3 @@
-import { FileService } from './../../../services/file.service';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
@@ -27,7 +26,7 @@ export class AddPriceComponent implements OnInit {
   file: string;
 
   constructor(private title: Title,
-    private dataService: PriceService, private fileService: FileService,
+    private dataService: PriceService,
     private companyService: CompanyService,
     private toastrService: NbToastrService) {
   }
@@ -101,26 +100,22 @@ export class AddPriceComponent implements OnInit {
     this.submitted = true;
     this.loading = true;
 
-    const formData = new FormData();
-    formData.append('Name', this.input.file);
+    const formData: FormData = new FormData();
 
-    this.fileService.create(formData).subscribe(
-      results => {
-        this.file = results.data;
+    for (const key in this.input) {
+      if (this.input.hasOwnProperty(key)) {
+        formData.append(key, this.input[key]);
+      }
+    }
 
-        if (this.result.isSuccess) {
-          this.onSuccess(this.result.message);
-        } else {
-          this.onOther(this.result.message);
-        }
-      },
-      error => {
-        this.error = error.message;
-        this.onError();
-      },
-    );
+    if (this.uploadedFiles != null && this.uploadedFiles.length > 0) {
+      // tslint:disable-next-line: prefer-for-of
+      for (let i = 0; i < this.uploadedFiles.length; i++) {
+        formData.append(this.uploadedFiles[i].name, this.uploadedFiles[i]);
+      }
+    }
 
-    this.dataService.create(this.input).subscribe(
+    this.dataService.create(formData).subscribe(
       results => {
         this.result = results;
 

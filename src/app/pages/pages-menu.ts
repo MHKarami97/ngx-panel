@@ -20,7 +20,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'افزودن کاربر',
-        link: '/pages/forms/layouts',
+        link: '/pages/forms/add-user',
       },
     ],
   },
@@ -74,7 +74,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'افزودن قطعه',
-        link: '/pages/forms/layouts',
+        link: '/pages/forms/add-piece',
       },
     ],
   },
@@ -106,7 +106,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'افزودن قیمت',
-        link: '/pages/forms/layouts',
+        link: '/pages/forms/add-price',
       },
     ],
   },
@@ -124,7 +124,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'افزودن استاندارد',
-        link: '/pages/forms/layouts',
+        link: '/pages/forms/add-standard',
       },
     ],
   },

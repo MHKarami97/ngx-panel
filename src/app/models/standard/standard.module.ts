@@ -6,6 +6,5 @@ export class Standard extends Base {
 }
 
 export class StandardCreate extends Base {
-  file: string;
   pieceId: number;
 }

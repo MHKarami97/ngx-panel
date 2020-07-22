@@ -39,24 +39,7 @@
                   </p>
                 </ng-container>
               </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="form-group">
-                <label for="name" class="label">آدرس</label>
-                <textarea nbInput fullWidth [(ngModel)]="input.address" name="address" id="address" #address="ngModel"
-                  [status]="address.dirty ? (address.invalid ? 'danger' : 'success') : ''"
-                  [attr.aria-invalid]="address.invalid && address.touched ? true : null" placeholder="آدرس"
-                  autocomplete="off" required></textarea>
-                <ng-container *ngIf="address.invalid && address.touched">
-                  <p class="caption status-danger" *ngIf="address.errors?.required">
-                    وارد کردن این آیتم اجباری است
-                  </p>
-                  <p class="caption status-danger" *ngIf="address.errors?.pattern">
-                    مقدار وارد شده نامعتبر است (فقط حروف فارسی مورد قبول است)
-                  </p>
-                </ng-container>
-              </div>
-            </div>
+            </div>            
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="userId" class="label">کاربر</label>
@@ -64,7 +47,7 @@
                   [attr.aria-invalid]="userId.invalid && userId.touched ? true : null" required>
                   <nb-option value="0" selected disabled>انتخاب کاربر</nb-option>
                   <nb-option *ngFor="let user of users" [value]="user.id">
-                    {{ user.fullName }} ({{user.phoneNumber}})
+                    ({{user.phoneNumber}}) {{ user.fullName }}
                   </nb-option>
                 </nb-select>
                 <ng-container *ngIf="userId.invalid && userId.touched">
@@ -93,6 +76,23 @@
                   </p>
                   <p class="caption status-danger" *ngIf="stateId.errors?.pattern">
                     مقدار وارد شده نامعتبر است
+                  </p>
+                </ng-container>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="name" class="label">آدرس</label>
+                <textarea nbInput fullWidth [(ngModel)]="input.address" name="address" id="address" #address="ngModel"
+                  [status]="address.dirty ? (address.invalid ? 'danger' : 'success') : ''"
+                  [attr.aria-invalid]="address.invalid && address.touched ? true : null" placeholder="آدرس"
+                  autocomplete="off" required></textarea>
+                <ng-container *ngIf="address.invalid && address.touched">
+                  <p class="caption status-danger" *ngIf="address.errors?.required">
+                    وارد کردن این آیتم اجباری است
+                  </p>
+                  <p class="caption status-danger" *ngIf="address.errors?.pattern">
+                    مقدار وارد شده نامعتبر است (فقط حروف فارسی مورد قبول است)
                   </p>
                 </ng-container>
               </div>

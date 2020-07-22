@@ -11,6 +11,7 @@ export class SellerSingle extends Base {
   userPhoneNumber: string;
   userFullName: string;
   stateName: string;
+  managerName: string;
 }
 
 export class SellerCreate extends Base {
@@ -19,4 +20,5 @@ export class SellerCreate extends Base {
   phone: string;
   stateId: number;
   userId: number;
+  managerName: string;
 }

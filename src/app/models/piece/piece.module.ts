@@ -1,7 +1,7 @@
 export class Piece extends Base {
-  pieceName: string;
+  name: string;
 }
 
 export class PieceCreate extends Base {
-  pieceName: string;
+  name: string;
 }

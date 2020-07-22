@@ -5,25 +5,53 @@
       <nb-card-body>
         <form (ngSubmit)="add()" #form="ngForm" aria-labelledby="title">
           <div class="row">
-            <!-- <div class="col-sm-6">
+            <div class="col-sm-12">
               <div class="form-group">
-                <label for="name" class="label">نام شرکت</label>
-                <input type="text" nbInput fullWidth [(ngModel)]="input.companyName" name="companyName" id="companyName"
-                  #companyName="ngModel"
-                  [status]="companyName.dirty ? (companyName.invalid ? 'danger' : 'success') : ''"
-                  [attr.aria-invalid]="companyName.invalid && companyName.touched ? true : null" placeholder="نام شرکت"
-                  autocomplete="off" required>
-                <ng-container *ngIf="companyName.invalid && companyName.touched">
-                  <p class="caption status-danger" *ngIf="companyName.errors?.required">
+                <label for="companyInfoId" class="label">قطعه</label>
+                <nb-select selected="0" fullWidth [(ngModel)]="input.pieceId" name="companyInfoId" id="companyInfoId"
+                  #InputOne="ngModel" [attr.aria-invalid]="InputOne.invalid && InputOne.touched ? true : null"
+                  placeholder="قطعه">
+                  <nb-option value="0" selected disabled>انتخاب قطعه</nb-option>
+                  <nb-option *ngFor="let item of pieces" [value]="item.id">
+                    {{ item.name }}
+                  </nb-option>
+                </nb-select>
+                <ng-container *ngIf="InputOne.invalid && InputOne.touched">
+                  <p class="caption status-danger" *ngIf="InputOne.errors?.required">
                     وارد کردن این آیتم اجباری است
                   </p>
-                  <p class="caption status-danger" *ngIf="companyName.errors?.pattern">
-                    مقدار وارد شده نامعتبر است (فقط حروف فارسی مورد قبول است)
+                  <p class="caption status-danger" *ngIf="InputOne.errors?.pattern">
+                    مقدار وارد شده نامعتبر است
                   </p>
                 </ng-container>
               </div>
-            </div> -->
-
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="userId" class="label">فایل</label>
+                <file-upload [(ngModel)]="uploadedFiles" #fileInput="ngModel" name="files" fileslimit="1" accept=".pdf"
+                  maxsize="10 MB" multiple="false" required>
+                  <ng-template let-isFileDragDropAvailable="isFileDragDropAvailable" #placeholder>
+                    <span *ngIf="isFileDragDropAvailable">فایل خود را انتخاب یا درگ کنید</span>
+                    <span *ngIf="!isFileDragDropAvailable">فایل خود را انتخاب کنید</span>
+                  </ng-template>
+                </file-upload>
+                <ng-container *ngIf="(fileInput.errors || fileInput.invalid) && fileInput.touched">
+                  <p class="caption status-danger" *ngIf="fileInput.errors?.required">
+                    وارد کردن این آیتم اجباری است
+                  </p>
+                  <p class="caption status-danger" *ngIf="fileInput.errors?.sizeRange">
+                    حجم فایل انتخاب شده نامعتبر است
+                  </p>
+                  <p class="caption status-danger" *ngIf="fileInput.errors?.fileTypes">
+                    نوع فایل انتخاب شده نامعتبر است
+                  </p>
+                  <p class="caption status-danger" *ngIf="fileInput.errors?.filesLimit">
+                    تعداد فایل انتخاب شده نامعتبر است
+                  </p>
+                </ng-container>
+              </div>
+            </div>
           </div>
           <button type="submit" nbButton hero [disabled]="submitted || !form.valid"
             [class.btn-pulse]="submitted">افزودن</button>

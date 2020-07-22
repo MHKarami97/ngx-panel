@@ -17,7 +17,8 @@ export class AddStandardComponent implements OnInit {
   loading = false;
   error = null;
 
-  input: StandardCreate = { id: 0, file: '', pieceId: 0 };
+  public uploadedFiles: Array<File> = [];
+  input: StandardCreate = { id: 0, pieceId: 0 };
   pieces: Piece[] = [];
   result: Api<Standard>;
   submitted: boolean = false;
@@ -91,7 +92,23 @@ export class AddStandardComponent implements OnInit {
   add(): void {
     this.submitted = true;
     this.loading = true;
-    this.dataService.create(this.input).subscribe(
+
+    const formData: FormData = new FormData();
+
+    for (const key in this.input) {
+      if (this.input.hasOwnProperty(key)) {
+        formData.append(key, this.input[key]);
+      }
+    }
+
+    if (this.uploadedFiles != null && this.uploadedFiles.length > 0) {
+      // tslint:disable-next-line: prefer-for-of
+      for (let i = 0; i < this.uploadedFiles.length; i++) {
+        formData.append(this.uploadedFiles[i].name, this.uploadedFiles[i]);
+      }
+    }
+
+    this.dataService.create(formData).subscribe(
       results => {
         this.result = results;
 

@@ -39,7 +39,7 @@ export class StandardService {
     );
   }
 
-  create(product: StandardCreate): Observable<Api<Standard>> {
+  create(product: FormData): Observable<Api<Standard>> {
     return this.http.post<Api<Standard>>(this.apiUrl + 'create', product).pipe(
       tap(),
       catchError(this.handleError('get', new Api<Standard>()),

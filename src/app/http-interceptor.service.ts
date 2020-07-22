@@ -28,7 +28,7 @@ export class HttpInterceptorService implements HttpInterceptor {
       req = changeUrl;
     }
 
-    if (!req.url.includes('tokenbybody') && req.method === 'POST') {
+    if (!req.url.includes('tokenbybody')) {
       req = this.addAuthenticationToken(req);
     }
 
@@ -56,14 +56,6 @@ export class HttpInterceptorService implements HttpInterceptor {
           this.toastrService.warning(
             'برنامه با خطای سطح دسترسی مواجه شد',
             'هشدار',
-            config);
-          setTimeout(() => {
-            this.router.navigate(['auth/login']);
-          }, 4000);
-        } else if (err.status === 400) {
-          this.toastrService.warning(
-            'احراز هویت برنامه با خطا مواجه شد',
-            'خطا',
             config);
           setTimeout(() => {
             this.router.navigate(['auth/login']);

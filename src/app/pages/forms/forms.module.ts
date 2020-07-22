@@ -24,7 +24,6 @@ import { AddPieceComponent } from './add-piece/add-piece.component';
 import { AddPriceComponent } from './add-price/add-price.component';
 import { AddProducerComponent } from './add-producer/add-producer.component';
 import { AddSellerComponent } from './add-seller/add-seller.component';
-import { AddSupporterComponent } from './add-supporter/add-supporter.component';
 import { AddStandardComponent } from './add-standard/add-standard.component';
 import { AddUserComponent } from './add-user/add-user.component';
 
@@ -57,7 +56,6 @@ import { AddUserComponent } from './add-user/add-user.component';
     AddProducerComponent,
     AddSellerComponent,
     AddStandardComponent,
-    AddSupporterComponent,
     AddUserComponent,
   ],
 })

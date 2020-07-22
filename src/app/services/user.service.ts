@@ -10,7 +10,7 @@ import { Api } from '../models/base/api.model';
 })
 export class UserService {
 
-  apiUrl = 'banner/';
+  apiUrl = 'user/';
   error = new Subject<string>();
 
   constructor(private http: HttpClient) { }

@@ -18,7 +18,7 @@ export class BannerTableComponent implements OnInit {
   settings = {
     actions: {
       add: false,
-      edit: true,
+      edit: false,
       delete: true,
     },
     add: {
@@ -44,7 +44,6 @@ export class BannerTableComponent implements OnInit {
       image: {
         title: 'عکس',
         type: 'html',
-        editable: false,
       },
       type: {
         title: 'نوع',

@@ -39,7 +39,7 @@ export class PriceService {
     );
   }
 
-  create(product: PriceCreate): Observable<Api<Price>> {
+  create(product: FormData): Observable<Api<Price>> {
     return this.http.post<Api<Price>>(this.apiUrl + 'create', product).pipe(
       tap(),
       catchError(this.handleError('get', new Api<Price>()),

@@ -7,8 +7,8 @@
           <div class="row">
             <div class="col-sm-6">
               <div class="form-group">
-                <label for="name" class="label">نام دسته</label>
-                <input type="text" nbInput fullWidth [(ngModel)]="input.pieceName" name="name" id="name"
+                <label for="name" class="label">نام قطعه</label>
+                <input type="text" nbInput fullWidth [(ngModel)]="input.name" name="name" id="name"
                   pattern="^[\u0600-\u06FF\s]+$" #inputOne="ngModel"
                   [status]="inputOne.dirty ? (inputOne.invalid ? 'danger' : 'success') : ''"
                   [attr.aria-invalid]="inputOne.invalid && inputOne.touched ? true : null" placeholder="نام قطعه"

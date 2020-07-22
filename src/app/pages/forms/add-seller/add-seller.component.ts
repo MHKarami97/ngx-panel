@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Api } from '../../../models/base/api.model';
 import { User } from '../../../models/user/user.module';
@@ -6,6 +6,9 @@ import { UserService } from '../../../services/user.service';
 import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
 import { Seller, SellerCreate } from '../../../models/client/Seller.module';
 import { SellerService } from '../../../services/seller.service';
+import { StateService } from '../../../services/state.service';
+import { State } from '../../../models/state/state.module';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'ngx-add-seller',
@@ -14,24 +17,26 @@ import { SellerService } from '../../../services/seller.service';
 })
 export class AddSellerComponent implements OnInit {
 
+  @ViewChild('form', { static: false }) myForm: NgForm;
+  
   loading = false;
   error = null;
 
   input: SellerCreate = {
-    id: 0, address: '',
-    location: '', companyName: '', phone: '', userFullName: '', userPhoneNumber: '', state: 0,
+    id: 0, address: '', companyName: '', phone: '', stateId: 0, userId: 0, managerName: ''
   };
   users: User[] = [];
+  states: State[] = [];
   result: Api<Seller>;
   submitted: boolean = false;
 
   constructor(private title: Title,
-    private dataService: SellerService,
-    private userDataService: UserService, private toastrService: NbToastrService) {
+    private dataService: SellerService, private userDataService: UserService,
+    private stateDataService: StateService, private toastrService: NbToastrService) {
   }
 
   ngOnInit(): void {
-    this.title.setTitle('پنل مدیریت' + ' | ' + 'افزودن ' + 'فروشنده');
+    this.title.setTitle('پنل مدیریت' + ' | ' + 'افزودن ' + 'شرکت');
 
     this.loading = true;
     this.userDataService.get().subscribe(
@@ -43,7 +48,17 @@ export class AddSellerComponent implements OnInit {
         this.onError();
       },
     );
-    this.loading = false;
+
+    this.stateDataService.get().subscribe(
+      results => {
+        this.states = results.data;
+        this.loading = false;
+      },
+      error => {
+        this.error = error.message;
+        this.onError();
+      },
+    );
   }
 
   onError() {
@@ -100,6 +115,7 @@ export class AddSellerComponent implements OnInit {
 
         if (this.result.isSuccess) {
           this.onSuccess(this.result.message);
+          this.myForm.resetForm();
         } else {
           this.onOther(this.result.message);
         }

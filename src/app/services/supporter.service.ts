@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Api } from '../models/base/api.model';
-import { Supporter, SupporterCreate } from '../models/client/Supporter.module';
+import { Supporter } from '../models/client/Supporter.module';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +28,7 @@ export class SupporterService {
       .pipe(
         tap(),
         catchError(this.handleError('get', new Api<Supporter[]>()),
-      ));
+        ));
   }
 
   getById(id: number): Observable<Api<Supporter>> {
@@ -36,21 +36,6 @@ export class SupporterService {
     return this.http.get<Api<Supporter>>(url).pipe(
       tap(),
       catchError(this.handleError<Api<Supporter>>(`getById id=${id}`)),
-    );
-  }
-
-  create(product: SupporterCreate): Observable<Api<Supporter>> {
-    return this.http.post<Api<Supporter>>(this.apiUrl + 'create', product).pipe(
-      tap(),
-      catchError(this.handleError('get', new Api<Supporter>()),
-    ));
-  }
-
-  update(id: number, product: SupporterCreate): Observable<Api<Supporter>> {
-    const url = `${this.apiUrl}update/${id}`;
-    return this.http.put<Api<Supporter>>(url, product).pipe(
-      tap(),
-      catchError(this.handleError<Api<Supporter>>('update')),
     );
   }
 

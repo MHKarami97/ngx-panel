@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Api } from '../../../models/base/api.model';
 import { User } from '../../../models/user/user.module';
@@ -8,6 +8,7 @@ import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
 import { CompanyCreate, Company } from '../../../models/client/company.module';
 import { State } from '../../../models/state/state.module';
 import { StateService } from '../../../services/state.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'ngx-add-company',
@@ -15,6 +16,8 @@ import { StateService } from '../../../services/state.service';
   templateUrl: './add-company.component.html',
 })
 export class AddCompanyComponent implements OnInit {
+
+  @ViewChild('form', { static: false }) myForm: NgForm;
 
   loading = false;
   error = null;
@@ -112,6 +115,7 @@ export class AddCompanyComponent implements OnInit {
 
         if (this.result.isSuccess) {
           this.onSuccess(this.result.message);
+          this.myForm.resetForm();
         } else {
           this.onOther(this.result.message);
         }

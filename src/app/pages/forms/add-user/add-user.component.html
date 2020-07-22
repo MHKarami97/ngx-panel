@@ -24,6 +24,23 @@
             </div>
             <div class="col-sm-6">
               <div class="form-group">
+                <label for="name" class="label">نام کامل</label>
+                <input type="text" nbInput fullWidth [(ngModel)]="input.fullName" name="fullName" id="fullName"
+                  #fullName="ngModel" [status]="fullName.dirty ? (fullName.invalid ? 'danger' : 'success') : ''"
+                  [attr.aria-invalid]="fullName.invalid && fullName.touched ? true : null" placeholder="نام"
+                  autocomplete="off" required>
+                <ng-container *ngIf="fullName.invalid && fullName.touched">
+                  <p class="caption status-danger" *ngIf="fullName.errors?.required">
+                    وارد کردن این آیتم اجباری است
+                  </p>
+                  <p class="caption status-danger" *ngIf="fullName.errors?.pattern">
+                    مقدار وارد شده نامعتبر است (فقط حروف فارسی مورد قبول است)
+                  </p>
+                </ng-container>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
                 <label for="name" class="label">موبایل</label>
                 <input type="tel" nbInput fullWidth [(ngModel)]="input.phoneNumber" name="phoneNumber" id="phoneNumber"
                   #phoneNumber="ngModel"

@@ -17,7 +17,7 @@ export class RequestTableComponent implements OnInit {
   settings = {
     actions: {
       add: false,
-      edit: true,
+      edit: false,
       delete: true,
     },
     add: {

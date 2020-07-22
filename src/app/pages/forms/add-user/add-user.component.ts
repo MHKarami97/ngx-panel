@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
 import { Api } from '../../../models/base/api.model';
 import { User, UserCreate } from '../../../models/user/user.module';
 import { UserService } from '../../../services/user.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'ngx-add-user',
@@ -12,6 +13,8 @@ import { UserService } from '../../../services/user.service';
 })
 export class AddUserComponent implements OnInit {
 
+  @ViewChild('form', { static: false }) myForm: NgForm;
+  
   loading = false;
   error = null;
 
@@ -81,6 +84,7 @@ export class AddUserComponent implements OnInit {
 
         if (this.result.isSuccess) {
           this.onSuccess(this.result.message);
+          this.myForm.resetForm();
         } else {
           this.onOther(this.result.message);
         }

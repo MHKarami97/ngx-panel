@@ -17,7 +17,7 @@ export class PieceTableComponent implements OnInit {
   settings = {
     actions: {
       add: false,
-      edit: true,
+      edit: false,
       delete: true,
     },
     add: {
@@ -40,7 +40,7 @@ export class PieceTableComponent implements OnInit {
         type: 'number',
         editable: false,
       },
-      pieceName: {
+      name: {
         title: 'نام قطعه',
         type: 'string',
       },
@@ -100,7 +100,7 @@ export class PieceTableComponent implements OnInit {
     } else {
       this.source.setFilter([
         {
-          field: 'pieceName',
+          field: 'name',
           search: query,
         },
       ], false, true);
