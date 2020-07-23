@@ -17,7 +17,7 @@ export class AddPieceComponent implements OnInit {
   loading = false;
   error = null;
 
-  input: PieceCreate = { id: 0, name: '' };
+  input: PieceCreate = { id: 0, name: '', pieceCategoryId: 0 };
   mainCats: Category[] = [];
   result: Api<Piece>;
   submitted: boolean = false;

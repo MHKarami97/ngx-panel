@@ -23,6 +23,27 @@
                 </ng-container>
               </div>
             </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="userId" class="label">دسته</label>
+                <nb-select selected="0" fullWidth [(ngModel)]="input.pieceCategoryId" name="pieceCategoryId"
+                  id="pieceCategoryId" #pieceCategoryId="ngModel"
+                  [attr.aria-invalid]="pieceCategoryId.invalid && pieceCategoryId.touched ? true : null" required>
+                  <nb-option value="0" selected disabled>انتخاب دسته</nb-option>
+                  <nb-option *ngFor="let user of mainCats" [value]="user.id">
+                    {{ user.name }}
+                  </nb-option>
+                </nb-select>
+                <ng-container *ngIf="pieceCategoryId.invalid && pieceCategoryId.touched">
+                  <p class="caption status-danger" *ngIf="pieceCategoryId.errors?.required">
+                    وارد کردن این آیتم اجباری است
+                  </p>
+                  <p class="caption status-danger" *ngIf="pieceCategoryId.errors?.pattern">
+                    مقدار وارد شده نامعتبر است
+                  </p>
+                </ng-container>
+              </div>
+            </div>
           </div>
           <button type="submit" nbButton hero [disabled]="submitted || !form.valid"
             [class.btn-pulse]="submitted">افزودن</button>

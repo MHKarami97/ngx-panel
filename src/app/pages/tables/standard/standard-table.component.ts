@@ -3,6 +3,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { Title } from '@angular/platform-browser';
 import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
 import { StandardService } from '../../../services/standard.service';
+import { Setting } from '../../../setting';
 
 @Component({
   selector: 'ngx-standard-table',
@@ -52,6 +53,10 @@ export class StandardTableComponent implements OnInit {
         title: 'تاریخ آپدیت',
         type: 'string',
       },
+      file: {
+        title: 'فایل',
+        type: 'html',
+      },
     },
   };
 
@@ -68,6 +73,7 @@ export class StandardTableComponent implements OnInit {
     this.dataService.get().subscribe(
       results => {
         this.source.load(results.data.map(function (val) {
+          val.file = `<a href="${Setting.baseUrl}uploads/${val.file}">file</a>`;
           return val;
         }));
       },

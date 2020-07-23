@@ -44,6 +44,10 @@ export class PieceTableComponent implements OnInit {
         title: 'نام قطعه',
         type: 'string',
       },
+      pieceCategoryName: {
+        title: 'نام دسته',
+        type: 'string',
+      },
     },
   };
 
