@@ -3,8 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Api } from '../models/base/api.model';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
-import { MessageCreate } from '../models/more/message.module';
+import { MessageCreate, Message } from '../models/more/message.module';
 
 @Injectable({
   providedIn: 'root',

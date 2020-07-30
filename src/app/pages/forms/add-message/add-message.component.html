@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-md-12">
+    <nb-card accent="info" [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerSize="large">
+      <nb-card-header>افزودن</nb-card-header>
+      <nb-card-body>
+        <form (ngSubmit)="add()" #form="ngForm" aria-labelledby="title" enctype="multipart/form-data">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="userId" class="label">کاربر</label>
+                <nb-select selected="0" fullWidth [(ngModel)]="input.userId" name="userId" id="userId" #userId="ngModel"
+                  [attr.aria-invalid]="userId.invalid && userId.touched ? true : null" required>
+                  <nb-option value="0" selected disabled>انتخاب کاربر</nb-option>
+                  <nb-option *ngFor="let user of users" [value]="user.id">
+                    {{ user.fullName }}
+                  </nb-option>
+                </nb-select>
+                <ng-container *ngIf="userId.invalid && userId.touched">
+                  <p class="caption status-danger" *ngIf="userId.errors?.required">
+                    وارد کردن این آیتم اجباری است
+                  </p>
+                  <p class="caption status-danger" *ngIf="userId.errors?.pattern">
+                    مقدار وارد شده نامعتبر است
+                  </p>
+                </ng-container>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="userId" class="label">پیام</label>
+                <textarea nbInput fullWidth  [(ngModel)]="input.text" name="text" id="text" #userId="ngModel"
+                  [attr.aria-invalid]="userId.invalid && userId.touched ? true : null" required>
+                </textarea>
+                <ng-container *ngIf="userId.invalid && userId.touched">
+                  <p class="caption status-danger" *ngIf="userId.errors?.required">
+                    وارد کردن این آیتم اجباری است
+                  </p>
+                  <p class="caption status-danger" *ngIf="userId.errors?.pattern">
+                    مقدار وارد شده نامعتبر است
+                  </p>
+                </ng-container>
+              </div>
+            </div>
+
+          </div>
+          <button type="submit" nbButton hero [disabled]="submitted || !form.valid"
+            [class.btn-pulse]="submitted">افزودن</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

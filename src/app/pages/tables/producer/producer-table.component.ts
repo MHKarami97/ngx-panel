@@ -94,6 +94,33 @@ export class ProducerTableComponent implements OnInit {
   onDeleteConfirm(event): void {
     if (window.confirm('آیا مطمئن هستید که می خواهید این آیتم را پاک کنید؟')) {
       event.confirm.resolve();
+
+      this.loading = true;
+      this.dataService.delete(event.data.id).subscribe(
+        results => {
+          if (!results.isSuccess) {
+            this.toastrService.danger('خطا در پاک کردن آیتم خواسته شده');
+          }
+        },
+        error => {
+          this.error = error.message;
+          this.onError();
+        },
+      );
+      this.loading = false;
+
+      this.loading = true;
+      this.dataService.get().subscribe(
+        results => {
+          this.source.load(results.data);
+        },
+        error => {
+          this.error = error.message;
+          this.onError();
+        },
+      );
+      this.loading = false;
+
     } else {
       event.confirm.reject();
     }

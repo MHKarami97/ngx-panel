@@ -11,6 +11,8 @@ import { AddSellerComponent } from './add-seller/add-seller.component';
 import { AddStandardComponent } from './add-standard/add-standard.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { AddClientPieceComponent } from './add-clientPiece/add-clientPiece.component';
+import { AddMessageComponent } from './add-message/add-message.component';
+import { AddPinComponent } from './add-pin/add-pin.component';
 
 const routes: Routes = [
   {
@@ -56,6 +58,14 @@ const routes: Routes = [
       {
         path: 'add-clientPiece',
         component: AddClientPieceComponent,
+      },
+      {
+        path: 'add-message',
+        component: AddMessageComponent,
+      },
+      {
+        path: 'add-pin',
+        component: AddPinComponent,
       },
     ],
   },

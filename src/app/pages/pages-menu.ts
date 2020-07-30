@@ -22,6 +22,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'افزودن کاربر',
         link: '/pages/forms/add-user',
       },
+      {
+        title: 'ارسال پیام',
+        link: '/pages/forms/add-message',
+      },
     ],
   },
   {
@@ -163,6 +167,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {
         title: 'افزودن فروشنده',
         link: '/pages/forms/add-seller',
+      },
+      {
+        title: 'افزودن شرکت پین شده',
+        link: '/pages/forms/add-pin',
+      },
+      {
+        title: 'شرکت های پین شده',
+        link: '/pages/tables/pin-table',
       },
     ],
   },

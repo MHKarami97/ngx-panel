@@ -13,6 +13,7 @@ import { SupporterTableComponent } from './supporter/supporter-table.component';
 import { UserTableComponent } from './user/user-table.component';
 import { PieceTableComponent } from './piece/piece-table.component';
 import { ClientPieceTableComponent } from './clientPiece/clientPiece-table.component';
+import { PinTableComponent } from './pin/pin-table.component';
 
 const routes: Routes = [{
   path: '',
@@ -66,6 +67,10 @@ const routes: Routes = [{
       path: 'clientPiece-table',
       component: ClientPieceTableComponent,
     },
+    {
+      path: 'pin-table',
+      component: PinTableComponent,
+    },
   ],
 }];
 
@@ -89,4 +94,5 @@ export const routedComponents = [
   PieceTableComponent,
   UserTableComponent,
   ClientPieceTableComponent,
+  PinTableComponent,
 ];

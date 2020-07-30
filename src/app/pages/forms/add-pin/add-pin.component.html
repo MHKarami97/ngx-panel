@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-12">
+    <nb-card accent="info" [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerSize="large">
+      <nb-card-header>افزودن</nb-card-header>
+      <nb-card-body>
+        <form (ngSubmit)="add()" #form="ngForm" aria-labelledby="title">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="userId" class="label">شرکت</label>
+                <nb-select selected="0" fullWidth [(ngModel)]="input.companyInfoId" name="companyInfoId"
+                  id="companyInfoId" #userId="ngModel"
+                  [attr.aria-invalid]="userId.invalid && userId.touched ? true : null" required>
+                  <nb-option value="0" selected disabled>انتخاب شرکت</nb-option>
+                  <nb-option *ngFor="let user of companies" [value]="user.id">
+                    {{user.companyName}}
+                  </nb-option>
+                </nb-select>
+                <ng-container *ngIf="userId.invalid && userId.touched">
+                  <p class="caption status-danger" *ngIf="userId.errors?.required">
+                    وارد کردن این آیتم اجباری است
+                  </p>
+                  <p class="caption status-danger" *ngIf="userId.errors?.pattern">
+                    مقدار وارد شده نامعتبر است
+                  </p>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+          <button type="submit" nbButton hero [disabled]="submitted || !form.valid"
+            [class.btn-pulse]="submitted">افزودن</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

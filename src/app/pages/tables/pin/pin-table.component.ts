@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Title } from '@angular/platform-browser';
-import { CategoryService } from './../../../services/category.service';
 import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
+import { PinService } from '../../../services/pin.service';
 
 @Component({
-  selector: 'ngx-category-table',
-  templateUrl: './category-table.component.html',
-  styleUrls: ['./category-table.component.scss'],
+  selector: 'ngx-pin-table',
+  templateUrl: './pin-table.component.html',
+  styleUrls: ['./pin-table.component.scss'],
 })
-export class CategoryTableComponent implements OnInit {
+export class PinTableComponent implements OnInit {
 
   loading = false;
   error = null;
@@ -40,12 +40,8 @@ export class CategoryTableComponent implements OnInit {
         type: 'number',
         editable: false,
       },
-      name: {
-        title: 'نام',
-        type: 'string',
-      },
-      parentCategoryName: {
-        title: 'دسته مادر',
+      companyInfoCompanyName: {
+        title: 'نام شرکت',
         type: 'string',
       },
     },
@@ -54,18 +50,16 @@ export class CategoryTableComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private title: Title,
-    private dataService: CategoryService, private toastrService: NbToastrService) {
+    private dataService: PinService, private toastrService: NbToastrService) {
   }
 
   ngOnInit(): void {
-    this.title.setTitle('پنل مدیریت' + ' | ' + 'لیست ' + 'دسته بندی ها');
+    this.title.setTitle('پنل مدیریت' + ' | ' + 'لیست ' + 'شرکت های پین شده');
 
     this.loading = true;
     this.dataService.get().subscribe(
       results => {
         this.source.load(results.data.map(function (val) {
-          if (val.parentCategoryName === null)
-            val.parentCategoryName = 'ندارد';
 
           return val;
         }));
@@ -134,11 +128,7 @@ export class CategoryTableComponent implements OnInit {
     } else {
       this.source.setFilter([
         {
-          field: 'name',
-          search: query,
-        },
-        {
-          field: 'parentCategoryName',
+          field: 'companyInfoCompanyName',
           search: query,
         },
       ], false, true);
