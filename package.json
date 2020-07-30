@@ -12,7 +12,7 @@
   "scripts": {
     "ng": "ng",
     "conventional-changelog": "conventional-changelog",
-    "start": "ng s -o ---ssl false --disableHostCheck true",
+    "start": "ng serve --ssl --ssl-key D:\\Programs\\ssl\\server.key  --ssl-cert D:\\Programs\\ssl\\server.crt",
     "build": "ng build",
     "build:prod": "npm run build -- --prod --aot",
     "test": "ng test",

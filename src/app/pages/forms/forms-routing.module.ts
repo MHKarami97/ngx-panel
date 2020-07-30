@@ -10,6 +10,7 @@ import { AddProducerComponent } from './add-producer/add-producer.component';
 import { AddSellerComponent } from './add-seller/add-seller.component';
 import { AddStandardComponent } from './add-standard/add-standard.component';
 import { AddUserComponent } from './add-user/add-user.component';
+import { AddClientPieceComponent } from './add-clientPiece/add-clientPiece.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,10 @@ const routes: Routes = [
       {
         path: 'add-user',
         component: AddUserComponent,
+      },
+      {
+        path: 'add-clientPiece',
+        component: AddClientPieceComponent,
       },
     ],
   },

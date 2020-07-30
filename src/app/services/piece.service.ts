@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Api } from '../models/base/api.model';
-import { Piece, PieceCreate } from '../models/piece/piece.module';
+import { Piece, PieceCreate, ClientPiece, ClientPieceCreate } from '../models/piece/piece.module';
 
 @Injectable({
   providedIn: 'root',
@@ -60,5 +60,20 @@ export class PieceService {
       tap(),
       catchError(this.handleError<Api<Piece>>('delete')),
     );
+  }
+
+  getClientPiece(): Observable<Api<ClientPiece[]>> {
+    return this.http.get<Api<ClientPiece[]>>(this.apiUrl + 'getClientPiece')
+      .pipe(
+        tap(),
+        catchError(this.handleError('get', new Api<ClientPiece[]>()),
+      ));
+  }
+
+  addPieceToClient(product: ClientPieceCreate): Observable<Api<ClientPiece>> {
+    return this.http.post<Api<ClientPiece>>(this.apiUrl + 'addPieceToClient', product).pipe(
+      tap(),
+      catchError(this.handleError('get', new Api<ClientPiece>()),
+    ));
   }
 }

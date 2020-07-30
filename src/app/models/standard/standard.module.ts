@@ -3,6 +3,7 @@ export class Standard extends Base {
   createdDate: string;
   updatedDate: string;
   pieceName: string;
+  pieceId: number;
 }
 
 export class StandardCreate extends Base {

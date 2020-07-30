@@ -1,0 +1,81 @@
+<div class="row">
+  <div class="col-md-12">
+    <nb-card accent="info" [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerSize="large">
+      <nb-card-header>افزودن</nb-card-header>
+      <nb-card-body>
+        <form (ngSubmit)="add()" #form="ngForm" aria-labelledby="title" enctype="multipart/form-data">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="companyInfoId" class="label">قطعه</label>
+                <nb-select selected="0" fullWidth [(ngModel)]="input.pieceId" name="companyInfoId" id="companyInfoId"
+                  #InputOne="ngModel" [attr.aria-invalid]="InputOne.invalid && InputOne.touched ? true : null"
+                  placeholder="قطعه" required>
+                  <nb-option value="0" selected disabled>انتخاب قطعه</nb-option>
+                  <nb-option *ngFor="let item of pieces" [value]="item.id">
+                    {{ item.name }}
+                  </nb-option>
+                </nb-select>
+                <ng-container *ngIf="InputOne.invalid && InputOne.touched">
+                  <p class="caption status-danger" *ngIf="InputOne.errors?.required">
+                    وارد کردن این آیتم اجباری است
+                  </p>
+                  <p class="caption status-danger" *ngIf="InputOne.errors?.pattern">
+                    مقدار وارد شده نامعتبر است
+                  </p>
+                </ng-container>
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="companyInfoId" class="label">شرکت</label>
+                <nb-select selected="0" fullWidth [(ngModel)]="input.companyInfoId" name="companyInfoId"
+                  id="companyInfoId" #InputOne="ngModel"
+                  [attr.aria-invalid]="InputOne.invalid && InputOne.touched ? true : null" placeholder="قطعه">
+                  <nb-option value="0" selected disabled>انتخاب شرکت</nb-option>
+                  <nb-option *ngFor="let item of companies" [value]="item.id">
+                    {{ item.companyName }}
+                  </nb-option>
+                </nb-select>
+                <ng-container *ngIf="InputOne.invalid && InputOne.touched">
+                  <p class="caption status-danger" *ngIf="InputOne.errors?.required">
+                    وارد کردن این آیتم اجباری است
+                  </p>
+                  <p class="caption status-danger" *ngIf="InputOne.errors?.pattern">
+                    مقدار وارد شده نامعتبر است
+                  </p>
+                </ng-container>
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="producerInfoId" class="label">تولید کننده</label>
+                <nb-select selected="0" fullWidth [(ngModel)]="input.producerInfoId" name="producerInfoId"
+                  id="producerInfoId" #InputOne="ngModel"
+                  [attr.aria-invalid]="InputOne.invalid && InputOne.touched ? true : null" placeholder="قطعه">
+                  <nb-option value="0" selected disabled>انتخاب تولید کننده</nb-option>
+                  <nb-option *ngFor="let item of producers" [value]="item.id">
+                    {{ item.companyName }}
+                  </nb-option>
+                </nb-select>
+                <ng-container *ngIf="InputOne.invalid && InputOne.touched">
+                  <p class="caption status-danger" *ngIf="InputOne.errors?.required">
+                    وارد کردن این آیتم اجباری است
+                  </p>
+                  <p class="caption status-danger" *ngIf="InputOne.errors?.pattern">
+                    مقدار وارد شده نامعتبر است
+                  </p>
+                </ng-container>
+              </div>
+            </div>
+
+          </div>
+          <button type="submit" nbButton hero [disabled]="submitted || !form.valid"
+            [class.btn-pulse]="submitted">افزودن</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

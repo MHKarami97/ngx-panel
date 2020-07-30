@@ -12,6 +12,7 @@ import { StandardTableComponent } from './standard/standard-table.component';
 import { SupporterTableComponent } from './supporter/supporter-table.component';
 import { UserTableComponent } from './user/user-table.component';
 import { PieceTableComponent } from './piece/piece-table.component';
+import { ClientPieceTableComponent } from './clientPiece/clientPiece-table.component';
 
 const routes: Routes = [{
   path: '',
@@ -61,6 +62,10 @@ const routes: Routes = [{
       path: 'user-table',
       component: UserTableComponent,
     },
+    {
+      path: 'clientPiece-table',
+      component: ClientPieceTableComponent,
+    },
   ],
 }];
 
@@ -83,4 +88,5 @@ export const routedComponents = [
   SupporterTableComponent,
   PieceTableComponent,
   UserTableComponent,
+  ClientPieceTableComponent,
 ];

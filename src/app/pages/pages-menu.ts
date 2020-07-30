@@ -76,6 +76,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'افزودن قطعه',
         link: '/pages/forms/add-piece',
       },
+      {
+        title: 'افزودن قطعه به کلاینت',
+        link: '/pages/forms/add-clientPiece',
+      },
+      {
+        title: 'لیست قطعه کلاینت ها',
+        link: '/pages/tables/clientPiece-table',
+      },
     ],
   },
   {

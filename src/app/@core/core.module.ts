@@ -111,7 +111,7 @@ export const NB_CORE_PROVIDERS = [
         token: {
           key: 'data.access_token',
         },
-        baseEndpoint: 'http://5.63.13.16/api/v1',
+        baseEndpoint: 'https://localhost:44339/api/v1',
 
         login: {
           endpoint: '/user/tokenbybody',
