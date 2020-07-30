@@ -33,7 +33,7 @@ export class HttpInterceptorService implements HttpInterceptor {
     }
 
     if (req.url.includes('banner/create') || req.url.includes('standard/create') ||
-      req.url.includes('price/create')) {
+      req.url.includes('price/create') || req.url.includes('price/update') || req.url.includes('standard/update')) {
     }
     else {
       req = this.addJsonHeader(req);

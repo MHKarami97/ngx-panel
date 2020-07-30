@@ -74,7 +74,7 @@ export class BannerTableComponent implements OnInit {
     this.dataService.get().subscribe(
       results => {
         this.source.load(results.data.map(function (val) {
-          val.image = `<img scr="${Setting.baseUrl}uploads/${val.image}" height="70" width="70" />`;
+          val.image = `<img src="${Setting.baseUrl}uploads/${val.image}" height="70" width="70" />`;
           return val;
         }));
       },

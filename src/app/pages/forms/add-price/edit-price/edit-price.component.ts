@@ -1,21 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
-import { Api } from '../../../models/base/api.model';
-import { Price, PriceCreate } from '../../../models/price/Price.module';
-import { PriceService } from '../../../services/price.service';
-import { CompanyService } from '../../../services/company.service';
-import { Company } from '../../../models/client/company.module';
+import { Api } from '../../../../models/base/api.model';
+import { Price, PriceCreate } from '../../../../models/price/Price.module';
+import { PriceService } from '../../../../services/price.service';
+import { Company } from '../../../../models/client/company.module';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'ngx-add-price',
-  styleUrls: ['./add-price.component.scss'],
-  templateUrl: './add-price.component.html',
+  selector: 'ngx-edit-price',
+  styleUrls: ['./edit-price.component.scss'],
+  templateUrl: './edit-price.component.html',
 })
-export class AddPriceComponent implements OnInit {
+export class EditPriceComponent implements OnInit {
 
   loading = false;
   error = null;
+  @Input() id: string;
 
   public uploadedFiles: Array<File> = [];
 
@@ -26,29 +27,29 @@ export class AddPriceComponent implements OnInit {
   file: string;
 
   constructor(private title: Title,
+    public route: ActivatedRoute,
     private dataService: PriceService,
-    private companyService: CompanyService,
     private toastrService: NbToastrService) {
   }
 
   ngOnInit(): void {
-    this.title.setTitle('پنل مدیریت' + ' | ' + 'افزودن ' + 'قیمت');
+    this.title.setTitle('پنل مدیریت' + ' | ' + 'ویرایش ' + 'قیمت');
 
-    this.loadData();
-  }
+    this.id = this.route.snapshot.paramMap.get('id');
 
-  loadData() {
     this.loading = true;
-    this.companyService.get().subscribe(
+    this.dataService.getById(+this.id).subscribe(
       results => {
-        this.companies = results.data;
+        this.input.companyInfoId = results.data.companyInfoId;
+        this.input.id = results.data.id;
+
+        this.loading = false;
       },
       error => {
         this.error = error.message;
         this.onError();
       },
     );
-    this.loading = false;
   }
 
   onError() {
@@ -115,7 +116,7 @@ export class AddPriceComponent implements OnInit {
       }
     }
 
-    this.dataService.create(formData).subscribe(
+    this.dataService.update(+this.id, formData).subscribe(
       results => {
         this.result = results;
 

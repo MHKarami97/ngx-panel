@@ -66,7 +66,7 @@ export class PriceTableComponent implements OnInit {
       results => {
         this.source.load(results.data.map(function (val) {
           if (val.file !== null)
-            val.file = `<a href="${Setting.baseUrl}uploads/${val.file}">link</a>`;
+            val.file = `<a href="${Setting.baseUrl}uploads/${val.file}">link</a> | <a href="/pages/forms/edit-price/${val.id}">edit</a>`;
 
           return val;
         }));

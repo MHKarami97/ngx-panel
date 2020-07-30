@@ -73,7 +73,7 @@ export class StandardTableComponent implements OnInit {
     this.dataService.get().subscribe(
       results => {
         this.source.load(results.data.map(function (val) {
-          val.file = `<a href="${Setting.baseUrl}uploads/${val.file}">file</a>`;
+          val.file = `<a href="${Setting.baseUrl}uploads/${val.file}">file</a> | <a href="/pages/forms/edit-standard/${val.id}">edit</a>`;
           return val;
         }));
       },

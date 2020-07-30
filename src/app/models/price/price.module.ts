@@ -7,6 +7,5 @@ export class Price extends Base {
 }
 
 export class PriceCreate extends Base {
-  file: string;
   companyInfoId: number;
 }

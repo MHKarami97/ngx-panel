@@ -29,6 +29,8 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { AddClientPieceComponent } from './add-clientPiece/add-clientPiece.component';
 import { AddMessageComponent } from './add-message/add-message.component';
 import { AddPinComponent } from './add-pin/add-pin.component';
+import { EditPriceComponent } from './add-price/edit-price/edit-price.component';
+import { EditStandardComponent } from './add-standard/edit-standard/edit-standard.component';
 
 @NgModule({
   imports: [
@@ -63,6 +65,8 @@ import { AddPinComponent } from './add-pin/add-pin.component';
     AddClientPieceComponent,
     AddMessageComponent,
     AddPinComponent,
+    EditPriceComponent,
+    EditStandardComponent,
   ],
 })
 export class FormsModule { }

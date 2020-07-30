@@ -46,7 +46,7 @@ export class PriceService {
     ));
   }
 
-  update(id: number, product: PriceCreate): Observable<Api<Price>> {
+  update(id: number, product: FormData): Observable<Api<Price>> {
     const url = `${this.apiUrl}update/${id}`;
     return this.http.put<Api<Price>>(url, product).pipe(
       tap(),

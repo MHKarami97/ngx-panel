@@ -13,6 +13,8 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { AddClientPieceComponent } from './add-clientPiece/add-clientPiece.component';
 import { AddMessageComponent } from './add-message/add-message.component';
 import { AddPinComponent } from './add-pin/add-pin.component';
+import { EditPriceComponent } from './add-price/edit-price/edit-price.component';
+import { EditStandardComponent } from './add-standard/edit-standard/edit-standard.component';
 
 const routes: Routes = [
   {
@@ -66,6 +68,14 @@ const routes: Routes = [
       {
         path: 'add-pin',
         component: AddPinComponent,
+      },
+      {
+        path: 'edit-price/:id',
+        component: EditPriceComponent,
+      },
+      {
+        path: 'edit-standard/:id',
+        component: EditStandardComponent,
       },
     ],
   },

@@ -46,7 +46,7 @@ export class StandardService {
     ));
   }
 
-  update(id: number, product: StandardCreate): Observable<Api<Standard>> {
+  update(id: number, product: FormData): Observable<Api<Standard>> {
     const url = `${this.apiUrl}update/${id}`;
     return this.http.put<Api<Standard>>(url, product).pipe(
       tap(),

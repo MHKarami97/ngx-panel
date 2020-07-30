@@ -1,54 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
-import { Api } from '../../../models/base/api.model';
-import { Price, PriceCreate } from '../../../models/price/Price.module';
-import { PriceService } from '../../../services/price.service';
-import { CompanyService } from '../../../services/company.service';
-import { Company } from '../../../models/client/company.module';
+import { Api } from '../../../../models/base/api.model';
+import { StandardCreate, Standard } from '../../../../models/standard/Standard.module';
+import { StandardService } from '../../../../services/standard.service';
+import { PieceService } from '../../../../services/piece.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'ngx-add-price',
-  styleUrls: ['./add-price.component.scss'],
-  templateUrl: './add-price.component.html',
+  selector: 'ngx-edit-standard',
+  styleUrls: ['./edit-standard.component.scss'],
+  templateUrl: './edit-standard.component.html',
 })
-export class AddPriceComponent implements OnInit {
+export class EditStandardComponent implements OnInit {
 
   loading = false;
   error = null;
+  @Input() id: string;
 
   public uploadedFiles: Array<File> = [];
-
-  input: PriceCreate = { id: 0, companyInfoId: 0 };
-  result: Api<Price>;
+  input: StandardCreate = { id: 0, pieceId: 0 };
+  result: Api<Standard>;
   submitted: boolean = false;
-  companies: Company[] = [];
-  file: string;
 
   constructor(private title: Title,
-    private dataService: PriceService,
-    private companyService: CompanyService,
+    public route: ActivatedRoute,
+    private dataService: StandardService,
     private toastrService: NbToastrService) {
   }
 
   ngOnInit(): void {
-    this.title.setTitle('پنل مدیریت' + ' | ' + 'افزودن ' + 'قیمت');
-
-    this.loadData();
-  }
-
-  loadData() {
+    this.title.setTitle('پنل مدیریت' + ' | ' + 'ویرایش ' + 'استاندارد');
+    this.id = this.route.snapshot.paramMap.get('id');
     this.loading = true;
-    this.companyService.get().subscribe(
+    this.dataService.getById(+this.id).subscribe(
       results => {
-        this.companies = results.data;
+        this.input.pieceId = results.data.pieceId;
+        this.input.id = results.data.id;
+
+        this.loading = false;
       },
       error => {
         this.error = error.message;
         this.onError();
       },
     );
-    this.loading = false;
   }
 
   onError() {
@@ -115,7 +111,7 @@ export class AddPriceComponent implements OnInit {
       }
     }
 
-    this.dataService.create(formData).subscribe(
+    this.dataService.update(+this.id, formData).subscribe(
       results => {
         this.result = results;
 
