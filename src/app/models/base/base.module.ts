@@ -1,7 +1,7 @@
-interface IBase<T> {
-  id: T;
-}
+// interface IBase<T> {
+//   id: T;
+// }
 
-abstract class Base implements IBase<number> {
-  id: number;
-}
+// abstract class Base implements IBase<number> {
+//   id: number;
+// }

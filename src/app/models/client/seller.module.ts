@@ -1,9 +1,11 @@
-export class Seller extends Base {
+export class Seller {
+  id: number;
   companyName: string;
   stateName: string;
 }
 
-export class SellerSingle extends Base {
+export class SellerSingle {
+  id: number;
   companyName: string;
   address: string;
   location: string;
@@ -14,7 +16,8 @@ export class SellerSingle extends Base {
   managerName: string;
 }
 
-export class SellerCreate extends Base {
+export class SellerCreate {
+  id: number;
   companyName: string;
   address: string;
   phone: string;

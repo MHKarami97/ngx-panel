@@ -1,3 +1,4 @@
-export class State extends Base {
+export class State {
+  id: number;
   name: string;
 }

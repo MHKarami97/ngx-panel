@@ -1,4 +1,5 @@
-export class Standard extends Base {
+export class Standard {
+  id: number;
   file: string;
   createdDate: string;
   updatedDate: string;
@@ -6,6 +7,7 @@ export class Standard extends Base {
   pieceId: number;
 }
 
-export class StandardCreate extends Base {
+export class StandardCreate {
+  id: number;
   pieceId: number;
 }

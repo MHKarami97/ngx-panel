@@ -39,17 +39,27 @@
                   </p>
                 </ng-container>
               </div>
-            </div>            
+            </div>
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="userId" class="label">کاربر</label>
-                <nb-select selected="0" fullWidth [(ngModel)]="input.userId" name="userId" id="userId" #userId="ngModel"
-                  [attr.aria-invalid]="userId.invalid && userId.touched ? true : null" required>
-                  <nb-option value="0" selected disabled>انتخاب کاربر</nb-option>
-                  <nb-option *ngFor="let user of users" [value]="user.id">
-                    ({{user.phoneNumber}}) {{ user.fullName }}
-                  </nb-option>
-                </nb-select>
+                <ng-select [items]="users"
+                           bindLabel="fullName"
+                           autofocus
+                           bindValue="id"
+                           name="userId"
+                           [(ngModel)]="input.userId"
+                           id="userId" #userId="ngModel"
+                           [attr.aria-invalid]="userId.invalid && userId.touched ? true : null"
+                           required>
+                </ng-select>
+<!--                <nb-select selected="0" fullWidth [(ngModel)]="input.userId" name="userId" id="userId" #userId="ngModel"-->
+<!--                  [attr.aria-invalid]="userId.invalid && userId.touched ? true : null" required>-->
+<!--                  <nb-option value="0" selected disabled>انتخاب کاربر</nb-option>-->
+<!--                  <nb-option *ngFor="let user of users" [value]="user.id">-->
+<!--                    ({{user.phoneNumber}}) {{ user.fullName }}-->
+<!--                  </nb-option>-->
+<!--                </nb-select>-->
                 <ng-container *ngIf="userId.invalid && userId.touched">
                   <p class="caption status-danger" *ngIf="userId.errors?.required">
                     وارد کردن این آیتم اجباری است

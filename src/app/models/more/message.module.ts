@@ -1,9 +1,11 @@
-export class Message extends Base {
+export class Message {
+  id: number;
   text: string;
   time: string;
 }
 
-export class MessageCreate extends Base {
+export class MessageCreate {
+  id: number;
   userId: number;
   text: string;
 }

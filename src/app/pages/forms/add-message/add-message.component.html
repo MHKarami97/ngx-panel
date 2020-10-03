@@ -2,19 +2,29 @@
   <div class="col-md-12">
     <nb-card accent="info" [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerSize="large">
       <nb-card-header>افزودن</nb-card-header>
-      <nb-card-body>
+      <nb-card-body style="min-height: 500px;">
         <form (ngSubmit)="add()" #form="ngForm" aria-labelledby="title" enctype="multipart/form-data">
           <div class="row">
             <div class="col-sm-6">
               <div class="form-group">
-                <label for="userId" class="label">کاربر</label>
-                <nb-select selected="0" fullWidth [(ngModel)]="input.userId" name="userId" id="userId" #userId="ngModel"
-                  [attr.aria-invalid]="userId.invalid && userId.touched ? true : null" required>
-                  <nb-option value="0" selected disabled>انتخاب کاربر</nb-option>
-                  <nb-option *ngFor="let user of users" [value]="user.id">
-                    {{ user.fullName }}
-                  </nb-option>
-                </nb-select>
+                <label for="userId" class="label">کاربر (برای ارسال به همه کاربر را وارد نکنید)</label>
+                <ng-select [items]="users"
+                           bindLabel="fullName"
+                           autofocus
+                           bindValue="id"
+                           name="userId"
+                           [(ngModel)]="input.userId"
+                           id="userId" #userId="ngModel"
+                           [attr.aria-invalid]="userId.invalid && userId.touched ? true : null"
+                           >
+                </ng-select>
+<!--                <nb-select selected="0" fullWidth [(ngModel)]="input.userId" name="userId" id="userId" #userId="ngModel"-->
+<!--                  [attr.aria-invalid]="userId.invalid && userId.touched ? true : null" required>-->
+<!--                  <nb-option value="0" selected disabled>انتخاب کاربر</nb-option>-->
+<!--                  <nb-option *ngFor="let user of users" [value]="user.id">-->
+<!--                    {{ user.fullName }}-->
+<!--                  </nb-option>-->
+<!--                </nb-select>-->
                 <ng-container *ngIf="userId.invalid && userId.touched">
                   <p class="caption status-danger" *ngIf="userId.errors?.required">
                     وارد کردن این آیتم اجباری است

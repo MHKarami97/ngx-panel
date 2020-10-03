@@ -1,8 +1,10 @@
-export class Pin extends Base {
+export class Pin {
+  id: number;
   companyInfoId: number;
   companyInfoCompanyName: string;
 }
 
-export class PinCreate extends Base {
+export class PinCreate {
+  id: number;
   companyInfoId: number;
 }

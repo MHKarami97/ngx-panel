@@ -23,7 +23,7 @@ export class AddProducerComponent implements OnInit {
   error = null;
 
   input: ProducerCreate = {
-    id: 0, address: '', companyName: '', phone: '', stateId: 0, userId: 0
+    id: 0, address: '', companyName: '', phone: '', stateId: 0, userId: 0,
   };
   users: User[] = [];
   states: State[] = [];
@@ -42,6 +42,7 @@ export class AddProducerComponent implements OnInit {
     this.userDataService.get().subscribe(
       results => {
         this.users = results.data;
+        this.users.forEach(a => a.fullName = a.fullName + ' (' + a.phoneNumber + ') ');
       },
       error => {
         this.error = error.message;

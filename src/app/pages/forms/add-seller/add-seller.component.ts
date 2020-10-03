@@ -18,12 +18,11 @@ import { NgForm } from '@angular/forms';
 export class AddSellerComponent implements OnInit {
 
   @ViewChild('form', { static: false }) myForm: NgForm;
-  
   loading = false;
   error = null;
 
   input: SellerCreate = {
-    id: 0, address: '', companyName: '', phone: '', stateId: 0, userId: 0, managerName: ''
+    id: 0, address: '', companyName: '', phone: '', stateId: 0, userId: 0, managerName: '',
   };
   users: User[] = [];
   states: State[] = [];
@@ -42,6 +41,7 @@ export class AddSellerComponent implements OnInit {
     this.userDataService.get().subscribe(
       results => {
         this.users = results.data;
+        this.users.forEach(a => a.fullName = a.fullName + ' (' + a.phoneNumber + ') ');
       },
       error => {
         this.error = error.message;

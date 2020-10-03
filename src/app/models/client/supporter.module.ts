@@ -1,6 +1,7 @@
 import { Piece } from './../piece/piece.module';
 
-export class Supporter extends Base {
+export class Supporter {
+  id: number;
   companyName: string;
   stateName: string;
   phone: string;

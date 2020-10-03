@@ -1,14 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { Api } from '../../../models/base/api.model';
-import { User } from '../../../models/user/user.module';
-import { UserService } from '../../../services/user.service';
-import { CompanyService } from '../../../services/company.service';
-import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
-import { CompanyCreate, Company } from '../../../models/client/company.module';
-import { State } from '../../../models/state/state.module';
-import { StateService } from '../../../services/state.service';
-import { NgForm } from '@angular/forms';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {Title} from '@angular/platform-browser';
+import {Api} from '../../../models/base/api.model';
+import {User} from '../../../models/user/user.module';
+import {UserService} from '../../../services/user.service';
+import {CompanyService} from '../../../services/company.service';
+import {NbToastrService, NbGlobalPhysicalPosition} from '@nebular/theme';
+import {CompanyCreate, Company} from '../../../models/client/company.module';
+import {State} from '../../../models/state/state.module';
+import {StateService} from '../../../services/state.service';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'ngx-add-company',
@@ -17,13 +17,13 @@ import { NgForm } from '@angular/forms';
 })
 export class AddCompanyComponent implements OnInit {
 
-  @ViewChild('form', { static: false }) myForm: NgForm;
+  @ViewChild('form', {static: false}) myForm: NgForm;
 
   loading = false;
   error = null;
 
   input: CompanyCreate = {
-    id: 0, address: '', companyName: '', phone: '', stateId: 0, userId: 0
+    id: 0, address: '', companyName: '', phone: '', stateId: 0, userId: 0,
   };
   users: User[] = [];
   states: State[] = [];
@@ -31,8 +31,8 @@ export class AddCompanyComponent implements OnInit {
   submitted: boolean = false;
 
   constructor(private title: Title,
-    private dataService: CompanyService, private userDataService: UserService,
-    private stateDataService: StateService, private toastrService: NbToastrService) {
+              private dataService: CompanyService, private userDataService: UserService,
+              private stateDataService: StateService, private toastrService: NbToastrService) {
   }
 
   ngOnInit(): void {
@@ -42,6 +42,7 @@ export class AddCompanyComponent implements OnInit {
     this.userDataService.get().subscribe(
       results => {
         this.users = results.data;
+        this.users.forEach(a => a.fullName = a.fullName + ' (' + a.phoneNumber + ') ');
       },
       error => {
         this.error = error.message;

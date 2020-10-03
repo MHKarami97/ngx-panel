@@ -31,6 +31,7 @@ import { AddMessageComponent } from './add-message/add-message.component';
 import { AddPinComponent } from './add-pin/add-pin.component';
 import { EditPriceComponent } from './add-price/edit-price/edit-price.component';
 import { EditStandardComponent } from './add-standard/edit-standard/edit-standard.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   imports: [
@@ -50,6 +51,7 @@ import { EditStandardComponent } from './add-standard/edit-standard/edit-standar
     NbSpinnerModule,
     ReactiveFormsModule,
     FileUploadModule,
+    NgSelectModule,
   ],
   declarations: [
     FormsComponent,

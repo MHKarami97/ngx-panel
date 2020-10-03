@@ -123,7 +123,10 @@ export class BannerTableComponent implements OnInit {
       this.loading = true;
       this.dataService.get().subscribe(
         results => {
-          this.source.load(results.data);
+          this.source.load(results.data.map(function (val) {
+            val.image = `<img src="${Setting.baseUrl}uploads/${val.image}" height="70" width="70" />`;
+            return val;
+          }));
         },
         error => {
           this.error = error.message;

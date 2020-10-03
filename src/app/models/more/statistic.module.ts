@@ -1,4 +1,5 @@
-export class  Statistic extends Base {
+export class  Statistic {
+  id: number;
   categories: number;
   standards: number;
   requests: number;

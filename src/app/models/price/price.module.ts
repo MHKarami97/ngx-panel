@@ -1,4 +1,5 @@
-export class Price extends Base {
+export class Price {
+  id: number;
   file: string;
   companyInfoId: number;
   companyInfoCompanyName: string;
@@ -6,6 +7,7 @@ export class Price extends Base {
   updatedDate: string;
 }
 
-export class PriceCreate extends Base {
+export class PriceCreate {
+  id: number;
   companyInfoId: number;
 }

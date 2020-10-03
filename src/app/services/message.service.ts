@@ -29,6 +29,13 @@ export class MessageService {
       ));
   }
 
+  sendToAll(product: MessageCreate): Observable<Api<Message>> {
+    return this.http.post<Api<Message>>(this.apiUrl + 'SendToAll', product).pipe(
+      tap(),
+      catchError(this.handleError('get', new Api<Message>()),
+      ));
+  }
+
   delete(id: any): Observable<Api<Message>> {
     const url = `${this.apiUrl}delete/${id}`;
     return this.http.delete<Api<Message>>(url).pipe(
