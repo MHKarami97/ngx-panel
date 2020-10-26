@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
-import { Title } from '@angular/platform-browser';
-import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
-import { PieceService } from '../../../services/piece.service';
+import {Component, OnInit} from '@angular/core';
+import {LocalDataSource} from 'ng2-smart-table';
+import {Title} from '@angular/platform-browser';
+import {NbToastrService, NbGlobalPhysicalPosition} from '@nebular/theme';
+import {PieceService} from '../../../services/piece.service';
 
 @Component({
-  selector: 'ngx-clientPiece-table',
+  selector: 'ngx-client-piece-table',
   templateUrl: './clientPiece-table.component.html',
   styleUrls: ['./clientPiece-table.component.scss'],
 })
@@ -58,7 +58,7 @@ export class ClientPieceTableComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private title: Title,
-    private dataService: PieceService, private toastrService: NbToastrService) {
+              private dataService: PieceService, private toastrService: NbToastrService) {
   }
 
   ngOnInit(): void {
@@ -67,7 +67,7 @@ export class ClientPieceTableComponent implements OnInit {
     this.loading = true;
     this.dataService.getClientPiece().subscribe(
       results => {
-        this.source.load(results.data.map(function (val) {          
+        this.source.load(results.data.map(function (val) {
           return val;
         }));
       },
