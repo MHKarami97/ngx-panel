@@ -1,12 +1,12 @@
 <nb-card accent="info" [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerSize="large">
   <nb-card-header>
     لیست
-    <input #search type="text" nbInput fieldSize="medium" placeholder="جستجو کلی ..."
-      (keyup)="onSearch(search.value)" style="float: left;">
+<!--    <input #search type="text" nbInput fieldSize="medium" placeholder="جستجو کلی ..."-->
+<!--      (keyup)="onSearch(search.value)" style="float: left;">-->
   </nb-card-header>
 
   <nb-card-body>
-    <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
+    <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" >
     </ng2-smart-table>
   </nb-card-body>
 </nb-card>

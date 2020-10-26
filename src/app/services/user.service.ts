@@ -54,8 +54,16 @@ export class UserService {
     );
   }
 
+  updateSecond(product: UserCreate): Observable<Api<User>> {
+    const url = `${this.apiUrl}UpdateByAdmin`;
+    return this.http.post<Api<User>>(url, product).pipe(
+      tap(),
+      catchError(this.handleError<Api<User>>('update')),
+    );
+  }
+
   delete(id: any): Observable<Api<User>> {
-    const url = `${this.apiUrl}delete/${id}`;
+    const url = `${this.apiUrl}delete?id=${id}`;
     return this.http.delete<Api<User>>(url).pipe(
       tap(),
       catchError(this.handleError<Api<User>>('delete')),

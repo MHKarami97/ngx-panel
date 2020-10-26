@@ -84,8 +84,8 @@ export class PieceTableComponent implements OnInit {
       preventDuplicates: true,
     };
 
-    this.toastrService.danger(
-      this.error,
+    this.toastrService.warning(
+      'این قطعه به یک شرکت/تولید کننده تخصیص داده شده است و نمی تواند پاک شود',
       'خطا',
       config);
   }

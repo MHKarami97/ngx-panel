@@ -6,6 +6,7 @@ export class User {
   public email: string;
   public fullName: string;
   public phoneNumber: string;
+  edit: string;
 }
 
 export class UserCreate {

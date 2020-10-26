@@ -24,6 +24,11 @@ const routes: Routes = [{
         .then(m => m.TablesModule),
     },
     {
+      path: 'edit',
+      loadChildren: () => import('./forms-edit/forms-edit.module')
+        .then(m => m.FormsEditModule),
+    },
+    {
       path: 'miscellaneous',
       loadChildren: () => import('./miscellaneous/miscellaneous.module')
         .then(m => m.MiscellaneousModule),

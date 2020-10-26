@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
-import { Title } from '@angular/platform-browser';
-import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
-import { UserService } from '../../../services/user.service';
+import {Component, OnInit} from '@angular/core';
+import {LocalDataSource} from 'ng2-smart-table';
+import {Title} from '@angular/platform-browser';
+import {NbToastrService, NbGlobalPhysicalPosition} from '@nebular/theme';
+import {UserService} from '../../../services/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'ngx-user-table',
@@ -48,13 +49,18 @@ export class UserTableComponent implements OnInit {
         title: 'موبایل',
         type: 'string',
       },
+      edit: {
+        title: 'ویرایش',
+        type: 'html',
+      },
     },
   };
 
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private title: Title,
-    private dataService: UserService, private toastrService: NbToastrService) {
+              private dataService: UserService, private toastrService: NbToastrService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -64,6 +70,7 @@ export class UserTableComponent implements OnInit {
     this.dataService.get().subscribe(
       results => {
         this.source.load(results.data.map(function (val) {
+          val.edit = `<a href="/pages/edit/edit-user/${val.id}">link</a>`;
           return val;
         }));
       },
@@ -93,9 +100,39 @@ export class UserTableComponent implements OnInit {
   onDeleteConfirm(event): void {
     if (window.confirm('آیا مطمئن هستید که می خواهید این آیتم را پاک کنید؟')) {
       event.confirm.resolve();
+
+      this.loading = true;
+      this.dataService.delete(event.data.id).subscribe(
+        results => {
+          if (!results.isSuccess) {
+            this.toastrService.danger('این عملیات نمی تواند انجام شود');
+          }
+        },
+        error => {
+          this.toastrService.danger('این عملیات نمی تواند انجام شود');
+        },
+      );
+      this.loading = false;
+
+      this.loading = true;
+      this.dataService.get().subscribe(
+        results => {
+          this.source.load(results.data);
+        },
+        error => {
+          this.error = error.message;
+          this.onError();
+        },
+      );
+      this.loading = false;
+
     } else {
       event.confirm.reject();
     }
+  }
+
+  onEditConfirm(event): void {
+    this.router.navigate([`/pages/forms-edit/edit-user/${event.data.id}`]);
   }
 
   onSearch(query: string = '') {

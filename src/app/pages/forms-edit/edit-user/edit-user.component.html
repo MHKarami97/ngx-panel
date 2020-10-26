@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col-md-12">
+    <nb-card accent="info" [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerSize="large">
+      <nb-card-header>ویرایش</nb-card-header>
+      <nb-card-body>
+        <form (ngSubmit)="add()" #form="ngForm" aria-labelledby="title">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="email" class="label">ایمیل</label>
+                <input type="email" nbInput fullWidth [(ngModel)]="input.email" name="email" id="email" #email="ngModel"
+                  [status]="email.dirty ? (email.invalid ? 'danger' : 'success') : ''"
+                  [attr.aria-invalid]="email.invalid && email.touched ? true : null" placeholder="ایمیل"
+                  autocomplete="off" required="false">
+                <ng-container *ngIf="email.invalid && email.touched">
+                  <p class="caption status-danger" *ngIf="email.errors?.required">
+                    وارد کردن این آیتم اجباری است
+                  </p>
+                  <p class="caption status-danger" *ngIf="email.errors?.pattern">
+                    مقدار وارد شده نامعتبر است (فقط حروف فارسی مورد قبول است)
+                  </p>
+                </ng-container>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="fullName" class="label">نام کامل</label>
+                <input type="text" nbInput fullWidth [(ngModel)]="input.fullName" name="fullName" id="fullName"
+                  #fullName="ngModel" [status]="fullName.dirty ? (fullName.invalid ? 'danger' : 'success') : ''"
+                  [attr.aria-invalid]="fullName.invalid && fullName.touched ? true : null" placeholder="نام"
+                  autocomplete="off" required="false">
+                <ng-container *ngIf="fullName.invalid && fullName.touched">
+                  <p class="caption status-danger" *ngIf="fullName.errors?.required">
+                    وارد کردن این آیتم اجباری است
+                  </p>
+                  <p class="caption status-danger" *ngIf="fullName.errors?.pattern">
+                    مقدار وارد شده نامعتبر است (فقط حروف فارسی مورد قبول است)
+                  </p>
+                </ng-container>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="phoneNumber" class="label">موبایل</label>
+                <input type="tel" nbInput fullWidth [(ngModel)]="input.phoneNumber" name="phoneNumber" id="phoneNumber"
+                  #phoneNumber="ngModel"
+                  [status]="phoneNumber.dirty ? (phoneNumber.invalid ? 'danger' : 'success') : ''"
+                  [attr.aria-invalid]="phoneNumber.invalid && phoneNumber.touched ? true : null" placeholder="موبایل"
+                  autocomplete="off" required>
+                <ng-container *ngIf="phoneNumber.invalid && phoneNumber.touched">
+                  <p class="caption status-danger" *ngIf="phoneNumber.errors?.required">
+                    وارد کردن این آیتم اجباری است
+                  </p>
+                  <p class="caption status-danger" *ngIf="phoneNumber.errors?.pattern">
+                    مقدار وارد شده نامعتبر است (فقط حروف فارسی مورد قبول است)
+                  </p>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+          <button type="submit" nbButton hero [disabled]="submitted || !form.valid"
+            [class.btn-pulse]="submitted">ویرایش</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

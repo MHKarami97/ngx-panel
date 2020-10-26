@@ -6,23 +6,24 @@ import {
   HttpResponse,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { NbAuthService, NbAuthSimpleToken } from '@nebular/auth';
-import { Router } from '@angular/router';
+import {NbAuthService, NbAuthSimpleToken} from '@nebular/auth';
+import {Router} from '@angular/router';
 import 'rxjs/add/operator/do';
-import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
-import { Injectable } from '@angular/core';
-import { Setting } from './setting';
+import {NbToastrService, NbGlobalPhysicalPosition} from '@nebular/theme';
+import {Injectable} from '@angular/core';
+import {Setting} from './setting';
 
 @Injectable()
 export class HttpInterceptorService implements HttpInterceptor {
 
-  constructor(private authService: NbAuthService, private router: Router, private toastrService: NbToastrService) { }
+  constructor(private authService: NbAuthService, private router: Router, private toastrService: NbToastrService) {
+  }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
 
     const baseUrl = Setting.baseUrl + 'api/v1/';
 
-    const changeUrl = req.clone({ url: baseUrl + req.url });
+    const changeUrl = req.clone({url: baseUrl + req.url});
 
     if (!req.url.includes('tokenbybody')) {
       req = changeUrl;
@@ -33,9 +34,9 @@ export class HttpInterceptorService implements HttpInterceptor {
     }
 
     if (req.url.includes('banner/create') || req.url.includes('standard/create') ||
-      req.url.includes('price/create') || req.url.includes('price/update') || req.url.includes('standard/update')) {
-    }
-    else {
+      req.url.includes('price/create') || req.url.includes('price/update')) {
+    } else if (req.url.includes('standard/update')) {
+    } else {
       req = this.addJsonHeader(req);
     }
 
@@ -67,15 +68,15 @@ export class HttpInterceptorService implements HttpInterceptor {
             this.router.navigate(['auth/login']);
           }, 4000);
         } else if (err.status === 500) {
-          this.toastrService.warning(
-            'متاسفانه برنامه با خطا مواجه شد',
-            'خطا',
-            config);
+          // this.toastrService.warning(
+          //   'متاسفانه برنامه با خطا مواجه شد',
+          //   'خطا',
+          //   config);
         } else if (err.status === 501) {
-          this.toastrService.warning(
-            'متاسفانه برنامه با خطا مواجه شد',
-            'خطا',
-            config);
+          // this.toastrService.warning(
+          //   'متاسفانه برنامه با خطا مواجه شد',
+          //   'خطا',
+          //   config);
         }
       }
     });
@@ -97,11 +98,10 @@ export class HttpInterceptorService implements HttpInterceptor {
       return request;
     }
 
-    let userToken: string;
+    let userToken: string = '';
 
     this.authService.onTokenChange()
       .subscribe((token: NbAuthSimpleToken) => {
-
         if (token.isValid()) {
           userToken = token.getValue();
         }
