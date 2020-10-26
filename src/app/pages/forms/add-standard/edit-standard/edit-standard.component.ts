@@ -1,11 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
-import { Api } from '../../../../models/base/api.model';
-import { StandardCreate, Standard } from '../../../../models/standard/Standard.module';
-import { StandardService } from '../../../../services/standard.service';
-import { PieceService } from '../../../../services/piece.service';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnInit, Input} from '@angular/core';
+import {Title} from '@angular/platform-browser';
+import {NbToastrService, NbGlobalPhysicalPosition} from '@nebular/theme';
+import {Api} from '../../../../models/base/api.model';
+import {StandardCreate, Standard} from '../../../../models/standard/Standard.module';
+import {StandardService} from '../../../../services/standard.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'ngx-edit-standard',
@@ -19,14 +18,14 @@ export class EditStandardComponent implements OnInit {
   @Input() id: string;
 
   public uploadedFiles: Array<File> = [];
-  input: StandardCreate = { id: 0, pieceId: 0 };
+  input: StandardCreate = {id: 0, pieceId: 0};
   result: Api<Standard>;
   submitted: boolean = false;
 
   constructor(private title: Title,
-    public route: ActivatedRoute,
-    private dataService: StandardService,
-    private toastrService: NbToastrService) {
+              public route: ActivatedRoute,
+              private dataService: StandardService,
+              private toastrService: NbToastrService) {
   }
 
   ngOnInit(): void {

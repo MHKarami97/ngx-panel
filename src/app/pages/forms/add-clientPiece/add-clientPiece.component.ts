@@ -10,7 +10,7 @@ import { CompanyService } from '../../../services/company.service';
 import { ProducerService } from '../../../services/producer.service';
 
 @Component({
-  selector: 'ngx-add-clientPiece',
+  selector: 'ngx-add-client-piece',
   styleUrls: ['./add-clientPiece.component.scss'],
   templateUrl: './add-clientPiece.component.html',
 })

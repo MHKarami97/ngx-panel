@@ -107,6 +107,8 @@ export class UserTableComponent implements OnInit {
           if (!results.isSuccess) {
             this.toastrService.danger('این عملیات نمی تواند انجام شود');
           }
+
+          this.toastrService.success('عملیات با موفقیت انجام شد');
         },
         error => {
           this.toastrService.danger('این عملیات نمی تواند انجام شود');

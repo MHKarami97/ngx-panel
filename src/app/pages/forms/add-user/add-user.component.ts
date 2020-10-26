@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
-import { Api } from '../../../models/base/api.model';
-import { User, UserCreate } from '../../../models/user/user.module';
-import { UserService } from '../../../services/user.service';
-import { NgForm } from '@angular/forms';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {Title} from '@angular/platform-browser';
+import {NbToastrService, NbGlobalPhysicalPosition} from '@nebular/theme';
+import {Api} from '../../../models/base/api.model';
+import {User, UserCreate} from '../../../models/user/user.module';
+import {UserService} from '../../../services/user.service';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'ngx-add-user',
@@ -13,17 +13,16 @@ import { NgForm } from '@angular/forms';
 })
 export class AddUserComponent implements OnInit {
 
-  @ViewChild('form', { static: false }) myForm: NgForm;
-  
+  @ViewChild('form', {static: false}) myForm: NgForm;
   loading = false;
   error = null;
 
-  input: UserCreate = { id: 0, email: '', fullName: '', phoneNumber: '' };
+  input: UserCreate = {id: 0, email: '', fullName: '', phoneNumber: ''};
   result: Api<User>;
   submitted: boolean = false;
 
   constructor(private title: Title,
-    private dataService: UserService, private toastrService: NbToastrService) {
+              private dataService: UserService, private toastrService: NbToastrService) {
   }
 
   ngOnInit(): void {

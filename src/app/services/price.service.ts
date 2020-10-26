@@ -1,9 +1,9 @@
-import { Observable, throwError, Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { catchError, tap } from 'rxjs/operators';
-import { Injectable } from '@angular/core';
-import { Api } from '../models/base/api.model';
-import { Price, PriceCreate } from '../models/price/Price.module';
+import {Observable, throwError, Subject} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {catchError, tap} from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {Api} from '../models/base/api.model';
+import {Price} from '../models/price/Price.module';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,8 @@ export class PriceService {
   apiUrl = 'price/';
   error = new Subject<string>();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -28,7 +29,7 @@ export class PriceService {
       .pipe(
         tap(),
         catchError(this.handleError('get', new Api<Price[]>()),
-      ));
+        ));
   }
 
   getById(id: number): Observable<Api<Price>> {
@@ -43,7 +44,7 @@ export class PriceService {
     return this.http.post<Api<Price>>(this.apiUrl + 'create', product).pipe(
       tap(),
       catchError(this.handleError('get', new Api<Price>()),
-    ));
+      ));
   }
 
   update(id: number, product: FormData): Observable<Api<Price>> {

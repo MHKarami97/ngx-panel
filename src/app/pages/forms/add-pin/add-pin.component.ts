@@ -1,12 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { Api } from '../../../models/base/api.model';
-import { CompanyService } from '../../../services/company.service';
-import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
-import { Company } from '../../../models/client/company.module';
-import { NgForm } from '@angular/forms';
-import { PinCreate, Pin } from '../../../models/more/pin.module';
-import { PinService } from '../../../services/pin.service';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {Title} from '@angular/platform-browser';
+import {Api} from '../../../models/base/api.model';
+import {CompanyService} from '../../../services/company.service';
+import {NbToastrService, NbGlobalPhysicalPosition} from '@nebular/theme';
+import {Company} from '../../../models/client/company.module';
+import {NgForm} from '@angular/forms';
+import {PinCreate, Pin} from '../../../models/more/pin.module';
+import {PinService} from '../../../services/pin.service';
 
 @Component({
   selector: 'ngx-add-pin',
@@ -15,20 +15,21 @@ import { PinService } from '../../../services/pin.service';
 })
 export class AddPinComponent implements OnInit {
 
-  @ViewChild('form', { static: false }) myForm: NgForm;
+  @ViewChild('form', {static: false}) myForm: NgForm;
 
   loading = false;
   error = null;
 
   input: PinCreate = {
-    id: 0, companyInfoId: null
+    id: 0, companyInfoId: null,
   };
   companies: Company[] = [];
   result: Api<Pin>;
   submitted: boolean = false;
 
   constructor(private title: Title,
-    private dataService: PinService, private companyDataService: CompanyService, private toastrService: NbToastrService) {
+              private dataService: PinService,
+              private companyDataService: CompanyService, private toastrService: NbToastrService) {
   }
 
   ngOnInit(): void {

@@ -1,9 +1,9 @@
-import { Observable, throwError, Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { catchError, tap } from 'rxjs/operators';
-import { Injectable } from '@angular/core';
-import { Api } from '../models/base/api.model';
-import { Standard, StandardCreate } from '../models/standard/Standard.module';
+import {Observable, throwError, Subject} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {catchError, tap} from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {Api} from '../models/base/api.model';
+import {Standard} from '../models/standard/Standard.module';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,8 @@ export class StandardService {
   apiUrl = 'standard/';
   error = new Subject<string>();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -28,7 +29,7 @@ export class StandardService {
       .pipe(
         tap(),
         catchError(this.handleError('get', new Api<Standard[]>()),
-      ));
+        ));
   }
 
   getById(id: number): Observable<Api<Standard>> {
@@ -43,7 +44,7 @@ export class StandardService {
     return this.http.post<Api<Standard>>(this.apiUrl + 'create', product).pipe(
       tap(),
       catchError(this.handleError('get', new Api<Standard>()),
-    ));
+      ));
   }
 
   update(id: number, product: FormData): Observable<Api<Standard>> {

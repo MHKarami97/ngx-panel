@@ -1,4 +1,4 @@
-import { Piece } from './../piece/piece.module';
+import {Piece} from './../piece/piece.module';
 
 export class Supporter {
   id: number;
