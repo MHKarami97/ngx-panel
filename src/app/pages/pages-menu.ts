@@ -102,6 +102,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'مدیریت درخواست ها',
         link: '/pages/tables/request-table',
       },
+      {
+        title: 'درخواست های تایید نشده',
+        link: '/pages/tables/request-status-table',
+      },
     ],
   },
   {

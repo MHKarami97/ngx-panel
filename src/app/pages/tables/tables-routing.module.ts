@@ -14,6 +14,7 @@ import { UserTableComponent } from './user/user-table.component';
 import { PieceTableComponent } from './piece/piece-table.component';
 import { ClientPieceTableComponent } from './clientPiece/clientPiece-table.component';
 import { PinTableComponent } from './pin/pin-table.component';
+import {RequestStatusTableComponent} from './requestStatus/requestStatus-table.component';
 
 const routes: Routes = [{
   path: '',
@@ -42,6 +43,10 @@ const routes: Routes = [{
     {
       path: 'request-table',
       component: RequestTableComponent,
+    },
+    {
+      path: 'request-status-table',
+      component: RequestStatusTableComponent,
     },
     {
       path: 'seller-table',
@@ -95,4 +100,5 @@ export const routedComponents = [
   UserTableComponent,
   ClientPieceTableComponent,
   PinTableComponent,
+  RequestStatusTableComponent,
 ];

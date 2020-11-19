@@ -39,6 +39,14 @@ export class UserService {
     );
   }
 
+  activeUserAdmin(id: number): Observable<Api<User>> {
+    const url = `${this.apiUrl}activeUserAdmin/${id}`;
+    return this.http.get<Api<User>>(url).pipe(
+      tap(),
+      catchError(this.handleError<Api<User>>(`activeUserAdmin id=${id}`)),
+    );
+  }
+
   create(product: UserCreate): Observable<Api<User>> {
     return this.http.post<Api<User>>(this.apiUrl + 'create', product).pipe(
       tap(),

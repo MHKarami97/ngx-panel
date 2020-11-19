@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {Api} from '../../../models/base/api.model';
 import {User} from '../../../models/user/user.module';
@@ -9,15 +9,17 @@ import {CompanyCreate, Company} from '../../../models/client/company.module';
 import {State} from '../../../models/state/state.module';
 import {StateService} from '../../../services/state.service';
 import {NgForm} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
-  selector: 'ngx-add-company',
-  styleUrls: ['./add-company.component.scss'],
-  templateUrl: './add-company.component.html',
+  selector: 'ngx-edit-company',
+  styleUrls: ['./edit-company.component.scss'],
+  templateUrl: './edit-company.component.html',
 })
-export class AddCompanyComponent implements OnInit {
+export class EditCompanyComponent implements OnInit {
 
   @ViewChild('form', {static: false}) myForm: NgForm;
+  @Input() id: string;
 
   loading = false;
   error = null;
@@ -32,11 +34,33 @@ export class AddCompanyComponent implements OnInit {
 
   constructor(private title: Title,
               private dataService: CompanyService, private userDataService: UserService,
-              private stateDataService: StateService, private toastrService: NbToastrService) {
+              private stateDataService: StateService, private toastrService: NbToastrService,
+              private route: ActivatedRoute) {
+
+    this.id = this.route.snapshot.paramMap.get('id');
   }
 
   ngOnInit(): void {
-    this.title.setTitle('پنل مدیریت' + ' | ' + 'افزودن ' + 'شرکت');
+    this.title.setTitle('پنل مدیریت' + ' | ' + 'ویرایش ' + 'شرکت');
+
+    this.loading = true;
+    this.dataService.getById(+this.id).subscribe(
+      results => {
+        this.input.description = results.data.description;
+        this.input.address = results.data.address;
+        this.input.phone = results.data.phone;
+        this.input.companyName = results.data.companyName;
+        this.input.stateId = results.data.stateId;
+        this.input.userId = results.data.userId;
+        this.input.id = results.data.id;
+
+        this.loading = false;
+      },
+      error => {
+        this.error = error.message;
+        this.onError();
+      },
+    );
 
     this.loading = true;
     this.userDataService.get().subscribe(
@@ -110,13 +134,12 @@ export class AddCompanyComponent implements OnInit {
   add(): void {
     this.submitted = true;
     this.loading = true;
-    this.dataService.create(this.input).subscribe(
+    this.dataService.update(this.input.id, this.input).subscribe(
       results => {
         this.result = results;
 
         if (this.result.isSuccess) {
           this.onSuccess(this.result.message);
-          this.myForm.resetForm();
         } else {
           this.onOther(this.result.message);
         }

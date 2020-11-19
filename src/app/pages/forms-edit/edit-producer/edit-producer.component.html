@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-12">
     <nb-card accent="info" [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerSize="large">
-      <nb-card-header>افزودن</nb-card-header>
+      <nb-card-header>ویرایش</nb-card-header>
       <nb-card-body>
         <form (ngSubmit)="add()" #form="ngForm" aria-labelledby="title">
           <div class="row">
@@ -126,7 +126,7 @@
             </div>
           </div>
           <button type="submit" nbButton hero [disabled]="submitted || !form.valid"
-            [class.btn-pulse]="submitted">افزودن</button>
+            [class.btn-pulse]="submitted">ویرایش</button>
         </form>
       </nb-card-body>
     </nb-card>

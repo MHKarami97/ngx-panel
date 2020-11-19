@@ -20,6 +20,7 @@ export class UserTableComponent implements OnInit {
       add: false,
       edit: false,
       delete: true,
+      custom: [{name: 'active', title: '<i class="nb-checkmark"></i> '}],
     },
     add: {
       addButtonContent: '<i class="nb-search"></i>',
@@ -49,6 +50,10 @@ export class UserTableComponent implements OnInit {
         title: 'موبایل',
         type: 'string',
       },
+      isActiveTxt: {
+        title: 'وضعیت',
+        type: 'string',
+      },
       edit: {
         title: 'ویرایش',
         type: 'html',
@@ -71,6 +76,7 @@ export class UserTableComponent implements OnInit {
       results => {
         this.source.load(results.data.map(function (val) {
           val.edit = `<a href="/pages/edit/edit-user/${val.id}">link</a>`;
+          val.isActiveTxt = val.isActive ? 'فعال' : 'غیر فعال';
           return val;
         }));
       },
@@ -95,6 +101,25 @@ export class UserTableComponent implements OnInit {
       this.error,
       'خطا',
       config);
+  }
+
+  onCustomAction(event: any) {
+    if (event.data.isActiveTxt === 'فعال') {
+      this.toastrService.warning('این کاربر فعال است', 'خطا');
+    } else {
+      this.loading = true;
+      this.dataService.activeUserAdmin(event.data.id).subscribe(
+        results => {
+          if (!results.isSuccess) {
+            this.toastrService.danger('خطا در انجام عمل');
+          }
+        },
+        error => {
+          this.error = error.message;
+          this.onError();
+        },
+      );
+    }
   }
 
   onDeleteConfirm(event): void {

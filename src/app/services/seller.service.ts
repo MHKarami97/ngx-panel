@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Api } from '../models/base/api.model';
-import { Seller, SellerCreate } from '../models/client/Seller.module';
+import {Seller, SellerCreate, SellerSingle} from '../models/client/Seller.module';
 
 @Injectable({
   providedIn: 'root',
@@ -31,11 +31,11 @@ export class SellerService {
       ));
   }
 
-  getById(id: number): Observable<Api<Seller>> {
+  getById(id: number): Observable<Api<SellerSingle>> {
     const url = `${this.apiUrl}get/${id}`;
-    return this.http.get<Api<Seller>>(url).pipe(
+    return this.http.get<Api<SellerSingle>>(url).pipe(
       tap(),
-      catchError(this.handleError<Api<Seller>>(`getById id=${id}`)),
+      catchError(this.handleError<Api<SellerSingle>>(`getById id=${id}`)),
     );
   }
 
@@ -47,8 +47,8 @@ export class SellerService {
   }
 
   update(id: number, product: SellerCreate): Observable<Api<Seller>> {
-    const url = `${this.apiUrl}update/${id}`;
-    return this.http.put<Api<Seller>>(url, product).pipe(
+    const url = `${this.apiUrl}update`;
+    return this.http.post<Api<Seller>>(url, product).pipe(
       tap(),
       catchError(this.handleError<Api<Seller>>('update')),
     );

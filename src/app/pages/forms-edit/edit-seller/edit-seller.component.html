@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-12">
     <nb-card accent="info" [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerSize="large">
-      <nb-card-header>افزودن</nb-card-header>
+      <nb-card-header>ویرایش</nb-card-header>
       <nb-card-body>
         <form (ngSubmit)="add()" #form="ngForm" aria-labelledby="title">
           <div class="row">
@@ -18,6 +18,24 @@
                     وارد کردن این آیتم اجباری است
                   </p>
                   <p class="caption status-danger" *ngIf="companyName.errors?.pattern">
+                    مقدار وارد شده نامعتبر است (فقط حروف فارسی مورد قبول است)
+                  </p>
+                </ng-container>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="name" class="label">نام مدیر</label>
+                <input type="text" nbInput fullWidth [(ngModel)]="input.managerName" name="managerName" id="managerName"
+                  #managerName="ngModel"
+                  [status]="managerName.dirty ? (managerName.invalid ? 'danger' : 'success') : ''"
+                  [attr.aria-invalid]="managerName.invalid && managerName.touched ? true : null" placeholder="نام مدیر"
+                  autocomplete="off" required>
+                <ng-container *ngIf="managerName.invalid && managerName.touched">
+                  <p class="caption status-danger" *ngIf="managerName.errors?.required">
+                    وارد کردن این آیتم اجباری است
+                  </p>
+                  <p class="caption status-danger" *ngIf="managerName.errors?.pattern">
                     مقدار وارد شده نامعتبر است (فقط حروف فارسی مورد قبول است)
                   </p>
                 </ng-container>
@@ -126,7 +144,7 @@
             </div>
           </div>
           <button type="submit" nbButton hero [disabled]="submitted || !form.valid"
-            [class.btn-pulse]="submitted">افزودن</button>
+            [class.btn-pulse]="submitted">ویرایش</button>
         </form>
       </nb-card-body>
     </nb-card>

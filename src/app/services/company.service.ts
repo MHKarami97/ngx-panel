@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Api } from '../models/base/api.model';
-import { Company, CompanyCreate } from '../models/client/company.module';
+import {Company, CompanyCreate, CompanySingle} from '../models/client/company.module';
 
 @Injectable({
   providedIn: 'root',
@@ -31,11 +31,11 @@ export class CompanyService {
         ));
   }
 
-  getById(id: number): Observable<Api<Company>> {
+  getById(id: number): Observable<Api<CompanySingle>> {
     const url = `${this.apiUrl}get/${id}`;
-    return this.http.get<Api<Company>>(url).pipe(
+    return this.http.get<Api<CompanySingle>>(url).pipe(
       tap(),
-      catchError(this.handleError<Api<Company>>(`getById id=${id}`)),
+      catchError(this.handleError<Api<CompanySingle>>(`getById id=${id}`)),
     );
   }
 
@@ -47,8 +47,8 @@ export class CompanyService {
   }
 
   update(id: number, product: CompanyCreate): Observable<Api<Company>> {
-    const url = `${this.apiUrl}update/${id}`;
-    return this.http.put<Api<Company>>(url, product).pipe(
+    const url = `${this.apiUrl}update`;
+    return this.http.post<Api<Company>>(url, product).pipe(
       tap(),
       catchError(this.handleError<Api<Company>>('update')),
     );

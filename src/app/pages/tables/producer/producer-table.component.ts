@@ -48,6 +48,10 @@ export class ProducerTableComponent implements OnInit {
         title: 'شهر',
         type: 'string',
       },
+      edit: {
+        title: 'ویرایش',
+        type: 'html',
+      },
     },
   };
 
@@ -64,7 +68,7 @@ export class ProducerTableComponent implements OnInit {
     this.dataService.get().subscribe(
       results => {
         this.source.load(results.data.map(function (val) {
-
+          val.edit = `<a href="/pages/edit/edit-producer/${val.id}">link</a>`;
           return val;
         }));
       },

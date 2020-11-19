@@ -1,14 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { Api } from '../../../models/base/api.model';
-import { User } from '../../../models/user/user.module';
-import { UserService } from '../../../services/user.service';
-import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
-import { ProducerCreate, Producer } from '../../../models/client/Producer.module';
-import { ProducerService } from '../../../services/producer.service';
-import { State } from '../../../models/state/state.module';
-import { StateService } from '../../../services/state.service';
-import { NgForm } from '@angular/forms';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {Title} from '@angular/platform-browser';
+import {Api} from '../../../models/base/api.model';
+import {User} from '../../../models/user/user.module';
+import {UserService} from '../../../services/user.service';
+import {NbToastrService, NbGlobalPhysicalPosition} from '@nebular/theme';
+import {ProducerCreate, Producer} from '../../../models/client/Producer.module';
+import {ProducerService} from '../../../services/producer.service';
+import {State} from '../../../models/state/state.module';
+import {StateService} from '../../../services/state.service';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'ngx-add-producer',
@@ -17,13 +17,13 @@ import { NgForm } from '@angular/forms';
 })
 export class AddProducerComponent implements OnInit {
 
-  @ViewChild('form', { static: false }) myForm: NgForm;
+  @ViewChild('form', {static: false}) myForm: NgForm;
 
   loading = false;
   error = null;
 
   input: ProducerCreate = {
-    id: 0, address: '', companyName: '', phone: '', stateId: 0, userId: 0,
+    id: 0, address: '', companyName: '', phone: '', stateId: 0, userId: 0, description: '',
   };
   users: User[] = [];
   states: State[] = [];
@@ -31,8 +31,8 @@ export class AddProducerComponent implements OnInit {
   submitted: boolean = false;
 
   constructor(private title: Title,
-    private dataService: ProducerService, private userDataService: UserService,
-    private stateDataService: StateService, private toastrService: NbToastrService) {
+              private dataService: ProducerService, private userDataService: UserService,
+              private stateDataService: StateService, private toastrService: NbToastrService) {
   }
 
   ngOnInit(): void {

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Api } from '../models/base/api.model';
-import { Producer, ProducerCreate } from '../models/client/Producer.module';
+import {Producer, ProducerCreate, ProducerSingle} from '../models/client/Producer.module';
 
 @Injectable({
   providedIn: 'root',
@@ -31,11 +31,11 @@ export class ProducerService {
       ));
   }
 
-  getById(id: number): Observable<Api<Producer>> {
+  getById(id: number): Observable<Api<ProducerSingle>> {
     const url = `${this.apiUrl}get/${id}`;
-    return this.http.get<Api<Producer>>(url).pipe(
+    return this.http.get<Api<ProducerSingle>>(url).pipe(
       tap(),
-      catchError(this.handleError<Api<Producer>>(`getById id=${id}`)),
+      catchError(this.handleError<Api<ProducerSingle>>(`getById id=${id}`)),
     );
   }
 
@@ -47,8 +47,8 @@ export class ProducerService {
   }
 
   update(id: number, product: ProducerCreate): Observable<Api<Producer>> {
-    const url = `${this.apiUrl}update/${id}`;
-    return this.http.put<Api<Producer>>(url, product).pipe(
+    const url = `${this.apiUrl}update`;
+    return this.http.post<Api<Producer>>(url, product).pipe(
       tap(),
       catchError(this.handleError<Api<Producer>>('update')),
     );

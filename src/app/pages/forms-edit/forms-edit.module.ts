@@ -18,6 +18,9 @@ import {NgSelectModule} from '@ng-select/ng-select';
 import {FormsEditRoutingModule} from './forms-edit-routing.module';
 import {EditUserComponent} from './edit-user/edit-user.component';
 import {FormsEditComponent} from './forms-edit.component';
+import {EditProducerComponent} from './edit-producer/edit-producer.component';
+import {EditCompanyComponent} from './edit-company/edit-company.component';
+import {EditSellerComponent} from './edit-seller/edit-seller.component';
 
 @NgModule({
   imports: [
@@ -42,6 +45,9 @@ import {FormsEditComponent} from './forms-edit.component';
   declarations: [
     FormsEditComponent,
     EditUserComponent,
+    EditProducerComponent,
+    EditCompanyComponent,
+    EditSellerComponent,
   ],
 })
 export class FormsEditModule {

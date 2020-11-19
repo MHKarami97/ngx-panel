@@ -1,4 +1,4 @@
-import { Role } from './role.module';
+import {Role} from './role.module';
 
 export class User {
   id: number;
@@ -7,6 +7,8 @@ export class User {
   public fullName: string;
   public phoneNumber: string;
   edit: string;
+  isActive: boolean;
+  isActiveTxt: string;
 }
 
 export class UserCreate {

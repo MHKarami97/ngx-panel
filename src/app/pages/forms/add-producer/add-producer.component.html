@@ -107,6 +107,23 @@
                 </ng-container>
               </div>
             </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="description" class="label">توضیحات</label>
+                <textarea nbInput fullWidth [(ngModel)]="input.description" name="description" id="description" #description="ngModel"
+                          [status]="description.dirty ? (description.invalid ? 'danger' : 'success') : ''"
+                          [attr.aria-invalid]="description.invalid && description.touched ? true : null" placeholder="توضیخات"
+                          autocomplete="off"></textarea>
+                <ng-container *ngIf="description.invalid && description.touched">
+                  <p class="caption status-danger" *ngIf="description.errors?.required">
+                    وارد کردن این آیتم اجباری است
+                  </p>
+                  <p class="caption status-danger" *ngIf="description.errors?.pattern">
+                    مقدار وارد شده نامعتبر است (فقط حروف فارسی مورد قبول است)
+                  </p>
+                </ng-container>
+              </div>
+            </div>
           </div>
           <button type="submit" nbButton hero [disabled]="submitted || !form.valid"
             [class.btn-pulse]="submitted">افزودن</button>

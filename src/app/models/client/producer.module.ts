@@ -4,6 +4,8 @@ export class Producer {
   companyName: string;
   stateName: string;
   pieces: Piece[];
+  edit: string;
+  id: number;
 }
 
 export class ProducerSingle {
@@ -15,6 +17,9 @@ export class ProducerSingle {
   userPhoneNumber: string;
   userFullName: string;
   stateName: string;
+  description: string;
+  stateId: number;
+  userId: number;
 }
 
 export class ProducerCreate {
@@ -24,4 +29,5 @@ export class ProducerCreate {
   phone: string;
   stateId: number;
   userId: number;
+  description: string;
 }

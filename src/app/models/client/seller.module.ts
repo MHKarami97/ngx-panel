@@ -2,6 +2,7 @@ export class Seller {
   id: number;
   companyName: string;
   stateName: string;
+  edit: string;
 }
 
 export class SellerSingle {
@@ -14,6 +15,9 @@ export class SellerSingle {
   userFullName: string;
   stateName: string;
   managerName: string;
+  description: string;
+  stateId: number;
+  userId: number;
 }
 
 export class SellerCreate {
@@ -24,4 +28,5 @@ export class SellerCreate {
   stateId: number;
   userId: number;
   managerName: string;
+  description: string;
 }

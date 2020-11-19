@@ -2,6 +2,7 @@ export class Company {
   id: number;
   companyName: string;
   stateName: string;
+  edit: string;
 }
 
 export class CompanySingle {
@@ -13,6 +14,9 @@ export class CompanySingle {
   userPhoneNumber: string;
   userFullName: string;
   stateName: string;
+  description: string;
+  stateId: number;
+  userId: number;
 }
 
 export class CompanyCreate {
@@ -22,4 +26,5 @@ export class CompanyCreate {
   phone: string;
   stateId: number;
   userId: number;
+  description: string;
 }

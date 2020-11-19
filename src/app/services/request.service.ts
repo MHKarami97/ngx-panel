@@ -23,11 +23,19 @@ export class RequestService {
     };
   }
 
-  getCustom(tpye: number): Observable<Api<Request[]>> {
-    const url = `${this.apiUrl}getcustom/${tpye}`;
+  getCustom(type: number): Observable<Api<Request[]>> {
+    const url = `${this.apiUrl}getCustom/${type}`;
     return this.http.get<Api<Request[]>>(url).pipe(
       tap(),
-      catchError(this.handleError<Api<Request[]>>(`getById id=${tpye}`)),
+      catchError(this.handleError<Api<Request[]>>(`getById id=${type}`)),
+    );
+  }
+
+  getCustomAdmin(type: number): Observable<Api<Request[]>> {
+    const url = `${this.apiUrl}getCustomAdmin/${type}`;
+    return this.http.get<Api<Request[]>>(url).pipe(
+      tap(),
+      catchError(this.handleError<Api<Request[]>>(`getById id=${type}`)),
     );
   }
 
@@ -36,6 +44,14 @@ export class RequestService {
       tap(),
       catchError(this.handleError('get', new Api<Request>()),
     ));
+  }
+
+  active(id: number): Observable<Api<Request>> {
+    const url = `${this.apiUrl}active/${id}`;
+    return this.http.get<Api<Request>>(url).pipe(
+      tap(),
+      catchError(this.handleError<Api<Request>>(`active id=${id}`)),
+    );
   }
 
   update(id: number, product: Request): Observable<Api<Request>> {
