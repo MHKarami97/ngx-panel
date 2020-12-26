@@ -3,5 +3,5 @@ export class Setting {
 }
 
 // export class Setting {
-//   static baseUrl = 'https://localhost:44339/';
+//   static baseUrl = 'https://localhost:5001/';
 // }

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Api } from '../models/base/api.model';
-import { MessageCreate, Message } from '../models/more/message.module';
+import {MessageCreate, Message, MessageSelect} from '../models/more/message.module';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +20,14 @@ export class MessageService {
       this.error.next(error.message);
       return throwError(error);
     };
+  }
+
+  getAll(): Observable<Api<MessageSelect[]>> {
+    return this.http.get<Api<MessageSelect[]>>(this.apiUrl + 'getAll')
+      .pipe(
+        tap(),
+        catchError(this.handleError('get', new Api<MessageSelect[]>()),
+        ));
   }
 
   create(product: MessageCreate): Observable<Api<Message>> {

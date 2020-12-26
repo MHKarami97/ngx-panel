@@ -26,6 +26,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'ارسال پیام',
         link: '/pages/forms/add-message',
       },
+      {
+        title: 'لیست پیام',
+        link: '/pages/tables/message-table',
+      },
     ],
   },
   {

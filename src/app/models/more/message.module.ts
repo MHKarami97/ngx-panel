@@ -9,3 +9,12 @@ export class MessageCreate {
   userId: number;
   text: string;
 }
+
+export class MessageSelect {
+  id: number;
+  userFullName: number;
+  text: string;
+  time: string;
+  isRead: boolean;
+  isReadText: string;
+}

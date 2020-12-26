@@ -75,7 +75,7 @@ export class AddUserComponent implements OnInit {
   }
 
   add(): void {
-    this.submitted = true;
+    this.submitted = false;
     this.loading = true;
     this.dataService.create(this.input).subscribe(
       results => {
